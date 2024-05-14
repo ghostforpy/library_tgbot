@@ -1,0 +1,1434 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-02 13:17+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: asprofil/templates/account/account_inactive.html:5
+#: asprofil/templates/account/account_inactive.html:8
+msgid "Account Inactive"
+msgstr ""
+
+#: asprofil/templates/account/account_inactive.html:10
+msgid "This account is inactive."
+msgstr ""
+
+#: asprofil/templates/account/email.html:7
+msgid "Account"
+msgstr ""
+
+#: asprofil/templates/account/email.html:10
+msgid "E-mail Addresses"
+msgstr ""
+
+#: asprofil/templates/account/email.html:13
+msgid "The following e-mail addresses are associated with your account:"
+msgstr ""
+
+#: asprofil/templates/account/email.html:28
+msgid "Verified"
+msgstr ""
+
+#: asprofil/templates/account/email.html:30
+msgid "Unverified"
+msgstr ""
+
+#: asprofil/templates/account/email.html:32
+msgid "Primary"
+msgstr ""
+
+#: asprofil/templates/account/email.html:38
+msgid "Make Primary"
+msgstr ""
+
+#: asprofil/templates/account/email.html:39
+msgid "Re-send Verification"
+msgstr ""
+
+#: asprofil/templates/account/email.html:40
+msgid "Remove"
+msgstr ""
+
+#: asprofil/templates/account/email.html:47
+msgid "Warning:"
+msgstr ""
+
+#: asprofil/templates/account/email.html:47
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+
+#: asprofil/templates/account/email.html:52
+msgid "Add E-mail Address"
+msgstr ""
+
+#: asprofil/templates/account/email.html:58
+msgid "Add E-mail"
+msgstr ""
+
+#: asprofil/templates/account/email.html:68
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr ""
+
+#: asprofil/templates/account/email_confirm.html:6
+#: asprofil/templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr ""
+
+#: asprofil/templates/account/email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: asprofil/templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr ""
+
+#: asprofil/templates/account/email_confirm.html:29
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: asprofil/templates/account/login.html:7
+#: asprofil/templates/account/login.html:11
+#: asprofil/templates/account/login.html:58
+msgid "Sign In"
+msgstr ""
+
+#: asprofil/templates/account/login.html:17
+msgid "Please sign in with one of your existing third party accounts:"
+msgstr ""
+
+#: asprofil/templates/account/login.html:19
+#, python-format
+msgid ""
+"Or, <a href=\"%(signup_url)s\">sign up</a> for a %(site_name)s account and "
+"sign in below:"
+msgstr ""
+
+#: asprofil/templates/account/login.html:32
+msgid "or"
+msgstr ""
+
+#: asprofil/templates/account/login.html:41
+#, python-format
+msgid ""
+"If you have not created an account yet, then please <a "
+"href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+
+#: asprofil/templates/account/logout.html:5
+#: asprofil/templates/account/logout.html:8
+#: asprofil/templates/account/logout.html:18
+msgid "Sign Out"
+msgstr ""
+
+#: asprofil/templates/account/logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr ""
+
+#: asprofil/templates/account/password_change.html:6
+#: asprofil/templates/account/password_change.html:9
+#: asprofil/templates/account/password_change.html:15
+#: asprofil/templates/account/password_reset_from_key.html:5
+#: asprofil/templates/account/password_reset_from_key.html:8
+#: asprofil/templates/account/password_reset_from_key_done.html:4
+#: asprofil/templates/account/password_reset_from_key_done.html:7
+msgid "Change Password"
+msgstr ""
+
+#: asprofil/templates/account/password_reset.html:7
+#: asprofil/templates/account/password_reset.html:11
+#: asprofil/templates/account/password_reset_done.html:6
+#: asprofil/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr ""
+
+#: asprofil/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: asprofil/templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr ""
+
+#: asprofil/templates/account/password_reset.html:25
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: asprofil/templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: asprofil/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr ""
+
+#: asprofil/templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: asprofil/templates/account/password_reset_from_key.html:19
+msgid "change password"
+msgstr ""
+
+#: asprofil/templates/account/password_reset_from_key.html:22
+#: asprofil/templates/account/password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr ""
+
+#: asprofil/templates/account/password_set.html:6
+#: asprofil/templates/account/password_set.html:9
+#: asprofil/templates/account/password_set.html:15
+msgid "Set Password"
+msgstr ""
+
+#: asprofil/templates/account/signup.html:6
+msgid "Signup"
+msgstr ""
+
+#: asprofil/templates/account/signup.html:9
+#: asprofil/templates/account/signup.html:20
+msgid "Sign Up"
+msgstr ""
+
+#: asprofil/templates/account/signup.html:11
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: asprofil/templates/account/signup_closed.html:5
+#: asprofil/templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr ""
+
+#: asprofil/templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed."
+msgstr ""
+
+#: asprofil/templates/account/verification_sent.html:5
+#: asprofil/templates/account/verification_sent.html:8
+#: asprofil/templates/account/verified_email_required.html:5
+#: asprofil/templates/account/verified_email_required.html:8
+msgid "Verify Your E-mail Address"
+msgstr ""
+
+#: asprofil/templates/account/verification_sent.html:10
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: asprofil/templates/account/verified_email_required.html:13
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+
+#: asprofil/templates/account/verified_email_required.html:17
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: asprofil/templates/account/verified_email_required.html:21
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+
+#: asprofil/templates/admin/base_site.html:32
+msgid "Documentation"
+msgstr ""
+
+#: asprofil/templates/admin/base_site.html:36
+msgid "Change password"
+msgstr ""
+
+#: asprofil/templates/admin/base_site.html:38
+msgid "Log out"
+msgstr ""
+
+#: asprofil/users/admin.py:17
+msgid "Personal info"
+msgstr ""
+
+#: asprofil/users/admin.py:19
+msgid "Permissions"
+msgstr ""
+
+#: asprofil/users/admin.py:30
+msgid "Important dates"
+msgstr ""
+
+#: asprofil/users/apps.py:7
+msgid "Users"
+msgstr ""
+
+#: asprofil/users/forms.py:25 asprofil/users/tests/test_forms.py:36
+msgid "This username has already been taken."
+msgstr ""
+
+#: asprofil/users/models.py:15
+msgid "Name of User"
+msgstr ""
+
+#: asprofil/users/views.py:23
+msgid "Information successfully updated"
+msgstr ""
+
+#: config/settings/base.py:32
+msgid "Россия"
+msgstr ""
+
+#: config/settings/base.py:33
+msgid "English"
+msgstr ""
+
+#: config/settings/base.py:34
+msgid "Узбекистан"
+msgstr ""
+
+#: sheduler/models/messages.py:37 sheduler/models/messages.py:61
+#: tgbot/models/status.py:15 tgbot/models/status.py:39
+msgid "Язык"
+msgstr ""
+
+#: tasks/models.py:15
+msgid "Открыта"
+msgstr ""
+
+#: tasks/models.py:16 tgbot/handlers/tg_tasks/manage_task_handlers.py:375
+#: tgbot/handlers/tg_tasks/start_tasks.py:27
+msgid "В процессе"
+msgstr ""
+
+#: tasks/models.py:17 tgbot/handlers/tg_tasks/manage_task_handlers.py:371
+msgid "Выполнена"
+msgstr ""
+
+#: tasks/models.py:18
+msgid "Невозможная"
+msgstr ""
+
+#: tasks/models.py:25
+msgid "Несрочный"
+msgstr ""
+
+#: tasks/models.py:26
+msgid "Средний"
+msgstr ""
+
+#: tasks/models.py:27
+msgid "Важный"
+msgstr ""
+
+#: tasks/models.py:68
+msgid "Interval Schedule"
+msgstr ""
+
+#: tasks/models.py:79 tgbot/handlers/tg_tasks/manage_task_handlers.py:121
+msgid "Задача"
+msgstr ""
+
+#: tasks/models.py:81 tgbot/handlers/tg_tasks/manage_task_handlers.py:125
+msgid "Приоритет"
+msgstr ""
+
+#: tasks/models.py:85 tgbot/handlers/tg_tasks/manage_task_handlers.py:155
+msgid "Выполнили"
+msgstr ""
+
+#: tasks/models.py:88 tgbot/handlers/tg_tasks/manage_task_handlers.py:124
+msgid "Статус"
+msgstr ""
+
+#: tasks/models.py:90 tgbot/handlers/tg_tasks/manage_task_handlers.py:129
+msgid "Срок"
+msgstr ""
+
+#: tasks/models.py:94 tgbot/handlers/tg_tasks/create_task_handlers.py:445
+#: tgbot/handlers/tg_tasks/messages.py:141
+msgid "Ежедневно"
+msgstr ""
+
+#: tasks/models.py:97 tgbot/handlers/tg_tasks/messages.py:143
+msgid "1 раз/3 дня"
+msgstr ""
+
+#: tasks/models.py:98 tgbot/handlers/tg_tasks/messages.py:144
+msgid "1 раз/неделя"
+msgstr ""
+
+#: tasks/models.py:99 tasks/models.py:100
+#: tgbot/handlers/tg_tasks/messages.py:145
+#: tgbot/handlers/tg_tasks/messages.py:146
+msgid "1 раз/месяц"
+msgstr ""
+
+#: tasks/models.py:101 tasks/models.py:102
+#: tgbot/handlers/tg_tasks/messages.py:147
+#: tgbot/handlers/tg_tasks/messages.py:148
+msgid "1 раз/год"
+msgstr ""
+
+#: tasks/models.py:104 tgbot/handlers/tg_tasks/manage_task_handlers.py:141
+msgid "Периодичность"
+msgstr ""
+
+#: tasks/models.py:106 tgbot/handlers/tg_tasks/manage_task_handlers.py:144
+msgid "Создал"
+msgstr ""
+
+#: tasks/models.py:110 tgbot/handlers/tg_tasks/messages.py:137
+msgid "Сотрудник не назначен"
+msgstr ""
+
+#: tasks/models.py:114
+msgid "Не выполнил"
+msgstr ""
+
+#: tasks/models.py:118 tgbot/handlers/tg_tasks/manage_task_handlers.py:160
+msgid "Не выполнили"
+msgstr ""
+
+#: tasks/models.py:135
+msgid "Изображение"
+msgstr ""
+
+#: tasks/models.py:159
+msgid "Файл"
+msgstr ""
+
+#: tasks/models.py:195
+msgid "Дата/время изменения состояния"
+msgstr ""
+
+#: tasks/tasks.py:16 tasks/tasks.py:54
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:394
+msgid "Просмотреть"
+msgstr ""
+
+#: tasks/tasks.py:17
+msgid "У вас новая задача."
+msgstr ""
+
+#: tasks/tasks.py:55
+msgid "Напоминание о задаче."
+msgstr ""
+
+#: tgbot/filters.py:7
+msgid "Доступные функции"
+msgstr ""
+
+#: tgbot/filters.py:33
+msgid "Доступные функции уровня должности"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:50
+msgid "Локация"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:51
+msgid "Переклички"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:63 tgbot/handlers/main/messages.py:20
+#: tgbot/handlers/tg_tasks/messages.py:26
+msgid "Выберите пункт меню"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:97
+msgid "Выберите конфигурацию переклички"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:99
+msgid "Конфигурации перекличек отсутствуют"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:124
+msgid "Перекличка запущена"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:178
+msgid "Пришёл запрос геолокации от "
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:180
+msgid "Отправить"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:184
+msgid "Отказаться"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:191
+msgid "Отправлен запрос геолокации"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:413
+msgid " отказался отправлять геолокацию"
+msgstr ""
+
+#: tgbot/handlers/employees/handlers.py:418 tgbot/handlers/main/answers.py:21
+#: tgbot/handlers/tg_tasks/messages.py:139 tgbot/models/funcs.py:5
+msgid "Сотрудники"
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:5 tgbot/handlers/tg_tasks/messages.py:4
+msgid "Выбрать сотрудника"
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:6
+msgid "Отправить геолокацию"
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:9
+#: tgbot/handlers/tg_tasks/messages.py:11
+msgid "Нажмите кнопку поиска и введите имя сотрудника."
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:10
+msgid ""
+"Включите геолокацию и нажмите кнопку для отправки геолокации. Изменяйте "
+"текст поиска пока не определится местоположение."
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:12
+#: tgbot/handlers/employees/messages.py:18
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:127
+#: tgbot/handlers/tg_tasks/messages.py:15
+#: tgbot/handlers/tg_tasks/messages.py:21
+msgid "Выбран сотрудник"
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:29
+#: tgbot/handlers/working_schedule/messages.py:21
+#: tgbot/handlers/working_schedule/messages.py:27
+msgid "Местоположение не определено"
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:30
+msgid "Местоположение "
+msgstr ""
+
+#: tgbot/handlers/employees/messages.py:31
+#: tgbot/handlers/working_schedule/messages.py:34
+#: tgbot/handlers/working_schedule/messages.py:39
+msgid "Местоположение определено"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:20 tgbot/handlers/main/answers.py:31
+#: working_schedule/utils.py:143
+msgid "Сообщение"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:22 tgbot/handlers/main/answers.py:34
+#: tgbot/handlers/main/answers.py:44 tgbot/models/funcs.py:4
+msgid "Задачи"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:26
+msgid "Мой профиль"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:27
+msgid "Связаться с нами"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:41
+msgid "Авторизовать юзербота"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:42
+msgid "Авторизовать юзербота QR"
+msgstr ""
+
+#: tgbot/handlers/main/answers.py:43
+msgid "Send"
+msgstr ""
+
+#: tgbot/handlers/main/handlers.py:52
+msgid "Задать вопрос"
+msgstr ""
+
+#: tgbot/handlers/main/handlers.py:53
+msgid "Жалоба"
+msgstr ""
+
+#: tgbot/handlers/main/handlers.py:54
+msgid "Предложение"
+msgstr ""
+
+#: tgbot/handlers/main/handlers.py:121
+msgid "Ваша жалоба отправлена"
+msgstr ""
+
+#: tgbot/handlers/main/handlers.py:142
+msgid "Ваше предложение отправлено"
+msgstr ""
+
+#: tgbot/handlers/main/handlers.py:163
+msgid "Ваш вопрос отправлен"
+msgstr ""
+
+#: tgbot/handlers/main/messages.py:21
+msgid "Введите текст жалобы"
+msgstr ""
+
+#: tgbot/handlers/main/messages.py:22
+msgid "Введите текст предложения"
+msgstr ""
+
+#: tgbot/handlers/main/messages.py:23
+msgid "Введите текст вопроса"
+msgstr ""
+
+#: tgbot/handlers/main/messages.py:24 tgbot/handlers/tg_tasks/messages.py:32
+msgid "Назад"
+msgstr ""
+
+#: tgbot/handlers/main/messages.py:49
+msgid ""
+"У Вас в Телеграм не введено имя пользователя. Это может затруднить общение с "
+"вами. Введите его в настройках Телеграм"
+msgstr ""
+
+#: tgbot/handlers/main/messages.py:52
+msgid ""
+"Вам не присвоен статус пользователя. Многие функции бота работать не будут. "
+"Сообщите об этом администраторам"
+msgstr ""
+
+#: tgbot/handlers/messages/handlers.py:41
+msgid "Всем сотрудникам"
+msgstr ""
+
+#: tgbot/handlers/messages/messages.py:7
+msgid "Введите текст сообщения"
+msgstr ""
+
+#: tgbot/handlers/messages/messages.py:8
+msgid "Сообщение от "
+msgstr ""
+
+#: tgbot/handlers/messages/messages.py:9
+msgid "Сообщение отправлено."
+msgstr ""
+
+#: tgbot/handlers/registration/answers.py:15
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:66
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:78
+msgid "Пропустить"
+msgstr ""
+
+#: tgbot/handlers/registration/answers.py:26
+msgid "Регистрация"
+msgstr ""
+
+#: tgbot/handlers/registration/answers.py:32
+msgid "Отправить контакт"
+msgstr ""
+
+#: tgbot/handlers/registration/answers.py:48
+msgid "Найти магазин"
+msgstr ""
+
+#: tgbot/handlers/registration/answers.py:55
+#: tgbot/handlers/registration/answers.py:61
+msgid "Выбран магазин"
+msgstr ""
+
+#: tgbot/handlers/registration/answers.py:73
+msgid "Пришлите именно фотографию"
+msgstr ""
+
+#: tgbot/handlers/registration/handlers.py:120
+msgid "Предыдущий вопрос"
+msgstr ""
+
+#: tgbot/handlers/registration/handlers.py:364
+msgid "Контакт принят"
+msgstr ""
+
+#: tgbot/handlers/registration/handlers.py:502
+msgid "Учетная запись подтверждена"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:8
+msgid "Регистрация отменена."
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:15
+msgid "Здравствуйте"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:15
+msgid "добро пожаловать в \"Asprofil\"!"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:31
+msgid "Отправьте контакт или введите номер в формате +998991112233"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:45 working_schedule/utils.py:114
+msgid "Имя"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:51 working_schedule/utils.py:114
+msgid "Фамилия"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:56 tgbot/models/users.py:493
+msgid "Роль"
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:61
+msgid ""
+"Нажмите кнопку поиска и введите на выбор: наименование магазина, регион, "
+"телефон."
+msgstr ""
+
+#: tgbot/handlers/registration/messages.py:110
+msgid "Загрузите свою фотографию или нажмите \"Пропустить\""
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:125
+msgid "Выбраны сотрудники"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:130
+msgid "Готово"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:405
+msgid "Дальше"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:414
+msgid "Очистить"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:441
+msgid "Год"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:442
+msgid "Месяц"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:443
+msgid "Неделя"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:444
+msgid "3 дня"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/create_task_handlers.py:446
+msgid "Однократно"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:126
+msgid "Создана"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:208
+msgid "Просмотреть изображения"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:212
+msgid "Просмотреть файлы"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:213
+msgid ""
+"\n"
+"Изменить статус задачи"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:241
+msgid "Удалить"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:367
+msgid "Изменился статус задачи"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:369
+msgid "Cтатус задачи"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:373
+msgid "Не выполнена"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/manage_task_handlers.py:377
+msgid "Изменил"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:13
+msgid "Напишите текст задачи."
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:25
+msgid "Список задач\n"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:77
+msgid "Задача изменена"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:82
+msgid "Задача удалена"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:87
+msgid "Задача создана"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:90
+msgid "Январь"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:91
+msgid "Февраль"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:92
+msgid "Март"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:93
+msgid "Апрель"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:94
+msgid "Май"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:95
+msgid "Июнь"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:96
+msgid "Июль"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:97
+msgid "Август"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:98
+msgid "Сентябрь"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:99
+msgid "Октябрь"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:100
+msgid "Ноябрь"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:101
+msgid "Декабрь"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:107
+msgid "Выберите дату"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:112
+msgid "Выберите приоритет"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:117
+msgid "Выберите периодичность"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:118
+msgid "Прикрепите файл или изображение (до 10)"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:119
+msgid ""
+"\n"
+"Прикреплено изображений: "
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:120
+msgid ""
+"\n"
+"Прикреплено файлов: "
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:125
+msgid "Выверите время или введите в формате 12:00"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:130
+msgid "Неверная дата."
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:135
+msgid "Неверное время."
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:138
+msgid "Сотрудник"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/messages.py:140
+msgid "Задачи отсутствуют"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/start_tasks.py:25
+msgid "Создать"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/start_tasks.py:26
+msgid "Открытые"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/start_tasks.py:28
+msgid "Выполненные"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/start_tasks.py:29
+msgid "С истекшим сроком"
+msgstr ""
+
+#: tgbot/handlers/tg_tasks/start_tasks.py:30
+msgid "Невозможные"
+msgstr ""
+
+#: tgbot/handlers/userbot/handlers.py:36
+msgid ""
+"Вам в телеграмм должен прийти код авторизации, отправьте его мне в очередном "
+"сообщении"
+msgstr ""
+
+#: tgbot/handlers/userbot/handlers.py:61
+msgid "Отправьте мне только цифры кода"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/handlers.py:56
+#: tgbot/handlers/working_schedule/handlers.py:141
+#: tgbot/handlers/working_schedule/handlers.py:280
+#: tgbot/handlers/working_schedule/handlers.py:328
+#: tgbot/handlers/working_schedule/handlerscp.py:40
+#: tgbot/handlers/working_schedule/handlerscp.py:82
+#: tgbot/handlers/working_schedule/handlerscp.py:298
+msgid "Принято"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/handlers.py:110
+#: tgbot/handlers/working_schedule/handlers.py:349
+#: tgbot/handlers/working_schedule/handlerscp.py:101
+#: tgbot/handlers/working_schedule/handlerscp.py:251
+#: tgbot/handlers/working_schedule/handlerscp.py:310
+#: working_schedule/tasks.py:172
+msgid "Перекличка остановлена"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/handlerscp.py:304
+msgid "прислал видео заметку."
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:11
+msgid "Введите причину"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:12
+msgid "Пришлите видео записку"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:13
+msgid "Подтвердите выход на работу"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:15
+msgid "На работе"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:16
+msgid "Больничный"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:17
+msgid "Выходной"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:18
+msgid "Другое"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:45
+msgid "Местоположение не зафиксировано, попробуйте еще раз."
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:47
+msgid "Определить местоположение"
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:50
+msgid ""
+"Включите геолокацию, разрешите Телеграмм доступ, нажмите кнопку определения "
+"местоположения."
+msgstr ""
+
+#: tgbot/handlers/working_schedule/messages.py:54
+#: tgbot/handlers/working_schedule/messages.py:59
+msgid "Слишком далеко от офиса"
+msgstr ""
+
+#: tgbot/models/config.py:9
+msgid "Наименование параметра"
+msgstr ""
+
+#: tgbot/models/config.py:10
+msgid "Значение параметра"
+msgstr ""
+
+#: tgbot/models/funcs.py:7
+msgid "Сотрудники -> Запрос локации сотрудников"
+msgstr ""
+
+#: tgbot/models/funcs.py:8
+msgid "Userbot"
+msgstr ""
+
+#: tgbot/models/users.py:60
+msgid "Выбранный язык"
+msgstr ""
+
+#: tgbot/models/users.py:163
+msgid "Доступные функции уровня пользователя"
+msgstr ""
+
+#: tgbot/models/users.py:481
+msgid "Пользователь"
+msgstr ""
+
+#: tgbot/models/users.py:497
+msgid "Телефон"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:4
+msgid "Дневной отчет за"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:7
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:14
+msgid "Приход:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:8
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:15
+msgid "Расход:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:9
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:16
+#: tgbot/templates/handlers/finance/daily_report_box_office_task_by_date.html:7
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:12
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_month.html:9
+#: tgbot/templates/handlers/finance/daily_report_start.html:12
+msgid "Касса:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:10
+#: tgbot/templates/handlers/finance/daily_report_box_office_task_by_date.html:8
+msgid "Состояние:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_for_owner_by_date.html:13
+#: tgbot/templates/handlers/finance/daily_report_box_office_task_by_date.html:10
+#: tgbot/templates/handlers/finance/daily_report_done_by_week.html:6
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:6
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:10
+#: tgbot/templates/handlers/finance/daily_report_request_by_week.html:7
+#: tgbot/templates/handlers/finance/daily_report_start.html:6
+#: tgbot/templates/handlers/finance/daily_report_start.html:10
+msgid "Итого:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_task_by_date.html:4
+msgid "Дневной отчет сдачи кассы за"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_task_by_date.html:11
+msgid "Разница:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_box_office_task_by_date.html:12
+msgid "Не сдали:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_done.html:3
+#: tgbot/templates/handlers/finance/daily_report_done_by_week.html:7
+msgid "Бухгалтер:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_done_by_week.html:3
+msgid "Предыдущие дни:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:3
+msgid "Финансовый отчет за"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:4
+#: tgbot/templates/handlers/finance/daily_report_start.html:4
+msgid "Приходы:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:5
+#: tgbot/templates/handlers/finance/daily_report_start.html:5
+msgid "Нет доходов"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:8
+#: tgbot/templates/handlers/finance/daily_report_start.html:8
+msgid "Расходы:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_date.html:9
+#: tgbot/templates/handlers/finance/daily_report_start.html:9
+msgid "Нет расходов"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_month.html:3
+msgid "Финансовый отчет за текущий месяц"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_month.html:5
+msgid "Приходы итого:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_for_owner_by_month.html:7
+msgid "Расходы итого:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_request.html:3
+#: tgbot/templates/handlers/finance/daily_report_request_by_week.html:3
+msgid "Пришел запрос на сдачу кассы"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_request.html:4
+#: tgbot/templates/handlers/finance/daily_report_request_by_week.html:4
+msgid "Пользователь:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_request.html:5
+msgid "Дата:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_request.html:6
+msgid "Сумма:"
+msgstr ""
+
+#: tgbot/templates/handlers/finance/daily_report_start.html:3
+msgid "Финансовый отчет за текущий день"
+msgstr ""
+
+#: userbot/tasks.py:48
+msgid "Телефон для авторизации юзербота не сконфигурирован"
+msgstr ""
+
+#: userbot/tasks.py:60
+msgid "Приложение для юзерботов не сконфигурировано"
+msgstr ""
+
+#: userbot/tasks.py:114 userbot/tasks.py:341
+msgid "Уже авторизован"
+msgstr ""
+
+#: userbot/tasks.py:136
+msgid "Неправильный телефонный номер"
+msgstr ""
+
+#: userbot/tasks.py:206 userbot/tasks.py:368
+msgid "Авторизация успешно завершена"
+msgstr ""
+
+#: userbot/tasks.py:215
+msgid "Что-то пошло не так"
+msgstr ""
+
+#: userbot/tasks.py:225
+msgid "Неправильный код авторизации, начните процедуру авторизации сначала"
+msgstr ""
+
+#: userbot/tasks.py:320
+msgid "Телефонный номер для авторизации не сконфигурирован QR"
+msgstr ""
+
+#: userbot/tasks.py:354
+msgid "Отсканируйте QR код"
+msgstr ""
+
+#: userbot/tasks.py:379
+msgid "Время вышло, запустите авторизацию заново"
+msgstr ""
+
+#: working_schedule/models.py:62 working_schedule/utils.py:15
+msgid "Понедельник"
+msgstr ""
+
+#: working_schedule/models.py:63 working_schedule/utils.py:16
+msgid "Вторник"
+msgstr ""
+
+#: working_schedule/models.py:64 working_schedule/utils.py:17
+msgid "Среда"
+msgstr ""
+
+#: working_schedule/models.py:65 working_schedule/utils.py:18
+msgid "Четверг"
+msgstr ""
+
+#: working_schedule/models.py:66 working_schedule/utils.py:19
+msgid "Пятница"
+msgstr ""
+
+#: working_schedule/models.py:67 working_schedule/utils.py:20
+msgid "Суббота"
+msgstr ""
+
+#: working_schedule/models.py:68 working_schedule/utils.py:21
+msgid "Воскресенье"
+msgstr ""
+
+#: working_schedule/models.py:74
+msgid "Наименование конфигурации"
+msgstr ""
+
+#: working_schedule/models.py:100
+msgid "Текст с вопросом об отсутствии ответа на перекличку в группы"
+msgstr ""
+
+#: working_schedule/models.py:105
+msgid "Отправлять сообщение с вопросом об отсутствии ответа в группы"
+msgstr ""
+
+#: working_schedule/models.py:109
+msgid "Текст с вопросом об отсутствии ответа на перекличку в личку"
+msgstr ""
+
+#: working_schedule/models.py:114
+msgid "Отправлять сообщение с вопросом об отсутствии ответа в личку"
+msgstr ""
+
+#: working_schedule/models.py:118
+msgid "Текст с вопросом об опоздании на перекличку в группы"
+msgstr ""
+
+#: working_schedule/models.py:123
+msgid "Отправлять сообщение с вопросом об опоздании в группы"
+msgstr ""
+
+#: working_schedule/models.py:127
+msgid "Текст с вопросом об опоздании на перекличку в личку"
+msgstr ""
+
+#: working_schedule/models.py:132
+msgid "Отправлять сообщение с вопросом об опоздании в личку"
+msgstr ""
+
+#: working_schedule/models.py:144
+msgid "Дни недели"
+msgstr ""
+
+#: working_schedule/models.py:146
+msgid ""
+"Если выбрал хотя бы один день недели, то будет только в этот день недели. "
+"Если не выбрать ни одного дня недели, то дни недели не учитываются."
+msgstr ""
+
+#: working_schedule/models.py:160
+msgid "Дни месяца"
+msgstr ""
+
+#: working_schedule/models.py:162
+msgid ""
+"Если выбрать хотя бы одно число месяца, то только в это число месяца, если "
+"не выбрать ни одного, то не учитывается"
+msgstr ""
+
+#: working_schedule/models.py:167 working_schedule/models.py:263
+msgid "Дата"
+msgstr ""
+
+#: working_schedule/models.py:168
+msgid "Время"
+msgstr ""
+
+#: working_schedule/models.py:170
+msgid "Повторение"
+msgstr ""
+
+#: working_schedule/models.py:173
+msgid ""
+"Если не поставить галочку, то  перекличка будет в назначенную дату и время"
+msgstr ""
+
+#: working_schedule/models.py:181
+msgid "Периодическая задача для повторений"
+msgstr ""
+
+#: working_schedule/models.py:247 working_schedule/models.py:248
+msgid "Назначенное время уже прошло"
+msgstr ""
+
+#: working_schedule/models.py:261
+msgid "Запущена"
+msgstr ""
+
+#: working_schedule/models.py:262
+msgid "Остановлена"
+msgstr ""
+
+#: working_schedule/models.py:282
+msgid "Задача для окончания переклички"
+msgstr ""
+
+#: working_schedule/models.py:297
+msgid "Задача для дополнительного окончания переклички"
+msgstr ""
+
+#: working_schedule/models.py:341
+msgid "Перекличка"
+msgstr ""
+
+#: working_schedule/models.py:357
+msgid "Причина не выхода на работу"
+msgstr ""
+
+#: working_schedule/models.py:358
+msgid "Прислал видео"
+msgstr ""
+
+#: working_schedule/models.py:359
+msgid "Время фиксирования"
+msgstr ""
+
+#: working_schedule/models.py:360
+msgid "Id запроса"
+msgstr ""
+
+#: working_schedule/tasks.py:138
+msgid "Опоздавшие"
+msgstr ""
+
+#: working_schedule/tasks.py:146
+msgid "Не прислали видео"
+msgstr ""
+
+#: working_schedule/tasks.py:156
+msgid "Не ответили"
+msgstr ""
+
+#: working_schedule/utils.py:29
+msgid "Общая"
+msgstr ""
+
+#: working_schedule/utils.py:110
+msgid "Количество сотрудников:"
+msgstr ""
+
+#: working_schedule/utils.py:111
+msgid "Суммарное опоздание:"
+msgstr ""
+
+#: working_schedule/utils.py:112
+msgid "Не ответитили хотя бы 1 раз:"
+msgstr ""
+
+#: working_schedule/utils.py:114
+msgid "Филиал"
+msgstr ""
+
+#: working_schedule/utils.py:114
+msgid "Должность"
+msgstr ""
+
+#: working_schedule/utils.py:117
+msgid "Количество опозданий"
+msgstr ""
+
+#: working_schedule/utils.py:117
+msgid "Общее время опозданий"
+msgstr ""
+
+#: working_schedule/utils.py:117
+msgid "Не ответил (раз)"
+msgstr ""
+
+#: working_schedule/utils.py:141
+msgid "Число"
+msgstr ""
+
+#: working_schedule/utils.py:141
+msgid "День недели"
+msgstr ""
+
+#: working_schedule/utils.py:141
+msgid "Время ответа"
+msgstr ""
+
+#: working_schedule/utils.py:143
+msgid "Опоздание"
+msgstr ""
+
+#: working_schedule/utils.py:143
+msgid "Не оветил"
+msgstr ""
+
+#: working_schedule/utils.py:166
+msgid "Время опозданий:"
+msgstr ""
+
+#: working_schedule/utils.py:167
+msgid "Среднее время опозданий:"
+msgstr ""
+
+#: working_schedule/utils.py:168
+msgid "Количество опозданий:"
+msgstr ""
+
+#: working_schedule/utils.py:169
+msgid "Не ответил:"
+msgstr ""

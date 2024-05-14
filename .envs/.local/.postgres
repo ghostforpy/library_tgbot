@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=library_tgbot
+POSTGRES_USER=DpoLzBTXFZXacTbffOBZZviLjwVhGmvk
+POSTGRES_PASSWORD=AIabWLC0jCulspaeqDKBVZzNHiYxQajXzi9VskwFvWSwqTW7F7o13ldStp6Z4Ryh

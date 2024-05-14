@@ -1,0 +1,14 @@
+# Docker-команда FROM указывает базовый образ контейнера
+# Наш базовый образ - это Linux с предустановленным python-3.7
+FROM python:3.9-slim
+# Скопируем файл с зависимостями в контейнер
+WORKDIR /app
+
+COPY . /app
+# Установим зависимости внутри контейнера
+RUN pip3 install -r requirements/local.txt
+# Скопируем остальные файлы в контейнер
+# COPY . /app
+# COPY .env_dep .env
+# запускаем скрипт
+CMD ["python", "compose/local/django/run_pooling.py"]

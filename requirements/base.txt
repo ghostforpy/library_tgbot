@@ -1,0 +1,41 @@
+pytz==2023.3  # https://github.com/stub42/pytz
+python-slugify==8.0.1  # https://github.com/un33k/python-slugify
+Pillow==9.5.0  # https://github.com/python-pillow/Pillow
+argon2-cffi==21.3.0  # https://github.com/hynek/argon2_cffi
+whitenoise==6.4.0  # https://github.com/evansd/whitenoise
+redis==4.5.4  # https://github.com/redis/redis-py
+hiredis==2.2.2  # https://github.com/redis/hiredis-py
+celery==5.2.7  # pyup: < 6.0  # https://github.com/celery/celery
+django-celery-beat==2.5.0  # https://github.com/celery/django-celery-beat
+flower==1.2.0  # https://github.com/mher/flower
+
+# Django
+# ------------------------------------------------------------------------------
+django==4.1.8  # pyup: < 4.2  # https://www.djangoproject.com/
+django-environ==0.10.0  # https://github.com/joke2k/django-environ
+django-model-utils==4.3.1  # https://github.com/jazzband/django-model-utils
+django-allauth==0.54.0  # https://github.com/pennersr/django-allauth
+django-crispy-forms==2.0  # https://github.com/django-crispy-forms/django-crispy-forms
+crispy-bootstrap5==0.7  # https://github.com/django-crispy-forms/crispy-bootstrap5
+django-redis==5.2.0  # https://github.com/jazzband/django-redis
+# Django REST Framework
+djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
+django-cors-headers==3.14.0  # https://github.com/adamchainz/django-cors-headers
+# DRF-spectacular for api documentation
+drf-spectacular==0.26.1  # https://github.com/tfranzel/drf-spectacular
+django-location-field==2.7.0 # https://django-location-field.readthedocs.io/en/latest/tutorials.html
+django-excel-response==2.0.5
+django-sql-utils==0.6.1
+
+# Telegram
+python-telegram-bot==13.14 # TODO 20.1
+python-telegram-bot-pagination==0.0.2
+python-telegram-bot-django-persistence==0.1.7
+Telethon==1.28.5
+#django-telethon-session==0.9
+django-telethon==1.1.5
+
+qrcode==7.4.2
+
+sentry-sdk==1.19.0  # https://github.com/getsentry/sentry-python
+

@@ -1,0 +1,32 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+DJANGO_SETTINGS_MODULE=config.settings.local
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+
+# Flower
+CELERY_FLOWER_USER=qBbhjkvKJHcvkjnihbkjvyRwKdeceGLQm
+CELERY_FLOWER_PASSWORD=aOw4lcmakfnwlebcouanckmapndouwbdjabx5hIBQD1ZsitA7wV
+
+
+#TG
+TELEGRAM_TOKEN=6251771168:AAGy87oQZ5SlftmCVgalYlQO7vUIcJ-hzpA
+TELEGRAM_WEBHOOK_SALT=vjbkashkcsdlfksdnkcjslnweouu
+# Мусорная группа, куда грузятся медиафайлы для получения их ИД
+TRASH_GROUP=-997976380
+ADMIN_GROUP=-884770829
+
+DOMAIN=
+
+#GOOGLE_API_KEY=AIzaSyAqzKVxDjJH5VLccog1kcZ4VKD7ntHba5A
+GOOGLE_API_KEY=
+
+#API_ID_TELEGRAM=
+#API_HASH_TELEGRAM=
+#TELEGRAM_CLIENT_PHONE=

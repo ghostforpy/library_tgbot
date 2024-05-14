@@ -1,0 +1,33 @@
+{% extends "admin/base_site.html" %}
+ 
+{% load static %}
+{% load i18n %}
+ 
+<!-- custom filter module -->
+{% load i18n_switcher %}
+ 
+{% comment %} {% block extrahead %} {% endcomment %}
+    {% comment %} <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" /> {% endcomment %}
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}"/> {% endcomment %}
+{% comment %} {% endblock %} {% endcomment %}
+ 
+{% block userlinks %}
+    <a href="{{ request|switch_i18n:'ru' }}">
+        {% comment %} <img class="i18n_flag" src="{% static 'images/flag-russia-16.png' %}"/> {% endcomment %}
+        RU
+    </a> /
+    <a href="{{ request|switch_i18n:'uz' }}">
+        UZ
+        {% comment %} <img class="i18n_flag" src="{% static 'images/flag-uz-16.png' %}"/> {% endcomment %}
+    </a> /
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+    {% endif %}
+    <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+{% endblock %}

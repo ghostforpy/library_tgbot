@@ -1,0 +1,11 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    {{ form }}
+    <p>Сообщение о подтверждении регистрации будет разослано этим пользователям:</p>
+    <ul>{{ items|unordered_list }}</ul>
+    <input type="hidden" name="action" value="reg_confirm" />
+    <input type="submit" name="apply" value="Send" />
+</form>
+{% endblock %}
