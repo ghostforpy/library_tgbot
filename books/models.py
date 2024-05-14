@@ -23,10 +23,19 @@ class Book(models.Model):
         related_name="uploaded_books",
         verbose_name="Загрузивший",
     )
+    book_type = models.CharField(
+        "Тип книги",
+        default="txt",
+        choices=[("txt", "txt"), ("fb2", "fb2")],
+        max_length=10,
+    )
 
     class Meta:
         verbose_name_plural = "Книги"
         verbose_name = "Книга"
+
+    def __str__(self) -> str:
+        return self.title
 
     def clean(self):
         def fill_file_id():
@@ -61,3 +70,25 @@ class Book(models.Model):
             self.file_id = ""
             self.file = ""
         return super().clean()
+
+
+class UserBookProgress(models.Model):
+    user = models.ForeignKey(
+        "tgbot.User",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="readed_books",
+        verbose_name="Пользователь",
+    )
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="user_progresses",
+        verbose_name="Книга",
+    )
+    progress_txt = models.FloatField(
+        "Прогресс", default=0.0, help_text="Для книг типа TXT"
+    )
