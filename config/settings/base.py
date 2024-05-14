@@ -100,6 +100,7 @@ LOCAL_APPS = [
     "library_tgbot.users",
     "tgbot",
     "sheduler",
+    "books",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
