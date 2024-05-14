@@ -34,7 +34,7 @@ from django.core.cache import caches
 from tgbot.handlers.keyboard import make_keyboard
 from tgbot.handlers.filters import FilterPrivateNoCommand
 from tgbot.handlers.commands import command_start
-from tgbot.handlers.main.messages import select_menu, back
+from tgbot.handlers.main.messages import back
 from tgbot.utils import send_message, _get_file_id, get_uniq_file_name
 import tgbot.models as mymodels
 from books.models import Book, UserBookProgress
@@ -63,7 +63,7 @@ def start_user_books_library(update: Update, context: CallbackContext):
     books_progresses = (
         user.readed_books.order_by("created_at").select_related("book").all()
     )
-    BOOKS_PER_PAGE = 2
+    BOOKS_PER_PAGE = 10
     p = Paginator(books_progresses, BOOKS_PER_PAGE)
     page = p.page(page_num)
     header_buttons = dict()
@@ -77,7 +77,7 @@ def start_user_books_library(update: Update, context: CallbackContext):
         if page:
             text = _("Выберите книгу или загрузите новую") + "\n\n"
             for idx, book_p in enumerate(page, start=1):
-                text += f"<b>{(page_num-1)* BOOKS_PER_PAGE +idx}.</b> {book_p.book}\n\n"
+                text += f"<b>{(page_num-1)* BOOKS_PER_PAGE +idx}.</b> {book_p.book} - {book_p.progress}\n\n"
                 btns[f"book-{book_p.id}"] = str((page_num - 1) * BOOKS_PER_PAGE + idx)
         else:
             text = _("В вашей библиотеке пока нет книг. Загрузите чтобы начать чтение")
