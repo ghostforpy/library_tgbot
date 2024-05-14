@@ -35,7 +35,10 @@ class Book(models.Model):
         verbose_name = "Книга"
 
     def __str__(self) -> str:
-        return self.title
+        r = self.title
+        if self.author:
+            r = f"{r} ({self.author})"
+        return r
 
     def clean(self):
         def fill_file_id():
@@ -97,3 +100,10 @@ class UserBookProgress(models.Model):
     class Meta:
         verbose_name_plural = "Прогрессы"
         verbose_name = "Прогресс"
+
+    @property
+    def progress(self):
+        if self.book.book_type == "txt":
+            return f"{self.progress_txt}%"
+        else:
+            return "not supported"
