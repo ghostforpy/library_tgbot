@@ -24,6 +24,8 @@ try:
         os.mkdir(f"{settings.MEDIA_ROOT}/task_attachement/images")
     if not os.path.isdir(f"{settings.MEDIA_ROOT}/task_attachement/files"):
         os.mkdir(f"{settings.MEDIA_ROOT}/task_attachement/files")
+    if not os.path.isdir(f"{settings.MEDIA_ROOT}/books_files"):
+        os.mkdir(f"{settings.MEDIA_ROOT}/books_files")
 
     tg_group = tgGroups.objects.filter(name="Администраторы").first()
     if not tg_group and settings.ADMIN_GROUP:

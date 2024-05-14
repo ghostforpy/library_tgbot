@@ -278,7 +278,7 @@ library_tgbot/media/messages
 library_tgbot/media/user_fotos
 library_tgbot/media/downloads
 library_tgbot/media/task_attachement
-
+library_tgbot/media/books_files
 
 .pytest_cache/
 .ipython/
