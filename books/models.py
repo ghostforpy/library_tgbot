@@ -92,3 +92,8 @@ class UserBookProgress(models.Model):
     progress_txt = models.FloatField(
         "Прогресс", default=0.0, help_text="Для книг типа TXT"
     )
+    created_at = models.DateTimeField("Создано", auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Прогрессы"
+        verbose_name = "Прогресс"
