@@ -34,6 +34,9 @@ from tgbot.handlers.main.handlers import setup_dispatcher_conv as setup_dispatch
 from tgbot.handlers.profile.handlers import (
     setup_dispatcher_conv as setup_dispatcher_prof,
 )
+from tgbot.handlers.user_library_books.handlers import (
+    setup_dispatcher_conv as setup_dispatcher_user_library_books,
+)
 from tgbot.handlers.messages.handlers import (
     setup_dispatcher_conv as setup_dispatcher_messages,
 )
@@ -99,6 +102,9 @@ def setup_dispatcher(dp: Dispatcher):
     setup_dispatcher_prof(dp)  # заполнение обработчиков работы с профайлом
     # setup_dispatcher_manage_memb(dp) #заполнение обработчиков работы с поиском
     setup_dispatcher_messages(dp)  # заполнение обработчиков работы с сообщениями
+    setup_dispatcher_user_library_books(
+        dp
+    )  # заполнение обработчиков работы с библиотекой книг пользователя
 
     for app in settings.LOCAL_APPS:
         if os.path.isfile(f"{app}/tgbothandlers/setup_dp.py"):

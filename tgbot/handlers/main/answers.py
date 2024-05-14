@@ -16,7 +16,7 @@ TO_ADMINS = {"to_admins": "Сообщение администраторам"}
 
 
 full_menu = lambda: {
-    "library": _("Библиотека"),
+    "user_books_library-1": _("Библиотека"),
 }
 
 start_menu_short = lambda: {
@@ -26,7 +26,7 @@ start_menu_short = lambda: {
 
 
 start_menu_admin = lambda: {
-    "library": _("Библиотека"),
+    "user_books_library-1": _("Библиотека"),
 }
 
 
@@ -34,7 +34,7 @@ def get_start_menu(user: User):
     with translation_override(user.language):
         if user.is_banned:
             return make_keyboard(TO_ADMINS, "inline", 1)
-        elif user.is_blocked_bot or not user.verified_by_admin:
+        elif user.is_blocked_bot:
             return make_keyboard(start_menu_short(), "inline", 1)
         elif user.is_admin:
             return make_keyboard(
@@ -42,5 +42,5 @@ def get_start_menu(user: User):
             )
         else:
             return make_keyboard(
-                start_menu_short(), "inline", 1, footer_buttons=start_menu_short()
+                full_menu(), "inline", 1, footer_buttons=start_menu_short()
             )
