@@ -1,5 +1,2 @@
-LANGUAGE = [
-    ("RU", "RU"),
-    ("UZ", "UZ")
-]
+LANGUAGE = [("RU", "RU"), ("EN", "EN")]
 DEFAULT_LANGUAGE = "RU"

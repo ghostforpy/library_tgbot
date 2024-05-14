@@ -36,7 +36,6 @@ class UserAdmin(admin.ModelAdmin):
     list_filter = [
         "is_blocked_bot",
         "is_banned",
-        "status",
         "verified_by_admin",
         "is_admin",
     ]
@@ -67,7 +66,6 @@ class UserAdmin(admin.ModelAdmin):
         "broadcast",
     ]
     ordering = ["last_name", "first_name"]
-    list_select_related = ["status"]
 
     def invited_users(self, obj):
         return obj.invited_users().count()
@@ -99,24 +97,24 @@ class UserAdmin(admin.ModelAdmin):
         )
 
 
-@admin.register(NewUser)
-class NewUserAdmin(admin.ModelAdmin):
-    list_display = ("user_id", "username", "first_name", "last_name", "registered")
-    list_display_links = (
-        "user_id",
-        "username",
-        "first_name",
-        "last_name",
-    )
-    search_fields = (
-        "user_id",
-        "username",
-        "first_name",
-        "last_name",
-    )
-    list_filter = [
-        "registered",
-    ]
+# @admin.register(NewUser)
+# class NewUserAdmin(admin.ModelAdmin):
+#     list_display = ("user_id", "username", "first_name", "last_name", "registered")
+#     list_display_links = (
+#         "user_id",
+#         "username",
+#         "first_name",
+#         "last_name",
+#     )
+#     search_fields = (
+#         "user_id",
+#         "username",
+#         "first_name",
+#         "last_name",
+#     )
+#     list_filter = [
+#         "registered",
+#     ]
 
 
 @admin.register(tgGroups)

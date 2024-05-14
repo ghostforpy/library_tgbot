@@ -31,7 +31,7 @@ TIME_ZONE = env("TIME_ZONE", default="Europe/Moscow")
 LANGUAGE_CODE = "en-us"
 LANGUAGES = [
     ("ru", _("Россия")),
-    ("en-us", _("English")),
+    ("en", _("English")),
     # ('uz', _('Узбекистан')),
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id

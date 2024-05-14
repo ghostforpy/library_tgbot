@@ -30,9 +30,6 @@ from django.conf import settings
 from sentry_sdk import capture_exception, capture_message
 
 from tgbot.handlers import commands
-from tgbot.handlers.registration.handlers import (
-    setup_dispatcher_conv as setup_dispatcher_reg,
-)
 from tgbot.handlers.main.handlers import setup_dispatcher_conv as setup_dispatcher_main
 from tgbot.handlers.profile.handlers import (
     setup_dispatcher_conv as setup_dispatcher_prof,
@@ -98,7 +95,6 @@ def setup_dispatcher(dp: Dispatcher):
     )
     dp.add_handler(CommandHandler("get_chat_id", commands.command_get_chat_id))
 
-    setup_dispatcher_reg(dp)  # заполнение обработчиков регистрации
     setup_dispatcher_main(dp)  # заполнение обработчиков главного диалога
     setup_dispatcher_prof(dp)  # заполнение обработчиков работы с профайлом
     # setup_dispatcher_manage_memb(dp) #заполнение обработчиков работы с поиском

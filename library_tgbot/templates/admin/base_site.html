@@ -16,8 +16,8 @@
         {% comment %} <img class="i18n_flag" src="{% static 'images/flag-russia-16.png' %}"/> {% endcomment %}
         RU
     </a> /
-    <a href="{{ request|switch_i18n:'uz' }}">
-        UZ
+    <a href="{{ request|switch_i18n:'en' }}">
+        EN
         {% comment %} <img class="i18n_flag" src="{% static 'images/flag-uz-16.png' %}"/> {% endcomment %}
     </a> /
     {% if user.is_active and user.is_staff %}

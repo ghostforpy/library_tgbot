@@ -72,12 +72,12 @@ class AbstractTgUser(models.Model, GetUrlModelMixin):
         return " ".join([str(self.first_name), str(self.last_name)])
 
 
-class NewUser(AbstractTgUser):
-    step = models.CharField(_("Завершенный шаг регистрации"), max_length=50, default="")
+# class NewUser(AbstractTgUser):
+#     step = models.CharField(_("Завершенный шаг регистрации"), max_length=50, default="")
 
-    class Meta:
-        verbose_name = _("Новый пользователь")
-        verbose_name_plural = _("Новые пользователи")
+#     class Meta:
+#         verbose_name = _("Новый пользователь")
+#         verbose_name_plural = _("Новые пользователи")
 
 
 class UserQuerySet(models.QuerySet):

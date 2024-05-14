@@ -70,7 +70,7 @@ production_logs:
 	sudo docker-compose -f production.yml logs -f
 
 make_translates:
-	django-admin makemessages --locale=uz --ignore=smartup/* -i venv
+	django-admin makemessages --locale=en --ignore=library_tgbot/* -i venv
 
 compiletranslates:
 	django-admin compilemessages
