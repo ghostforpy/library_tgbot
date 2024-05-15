@@ -186,8 +186,23 @@ def manage_book_file_action(update: Update, context: CallbackContext):
         user_upload=user,
         file=f"books_files/{filename}",
         file_id=file_id,
+        book_type=filename_lst[1].lower(),
     )
-    UserBookProgress.objects.create(book=book, user=user)
+    ubp = UserBookProgress.objects.create(book=book, user=user)
+    if book.book_type == "txt":
+        try:
+            ubp.total_pages_txt_book = len(book.get_paginated_book_txt())
+        except:
+            with translation_override(user.language):
+                send_message(
+                    update.message.from_user.id,
+                    text=_("При чтении книги произошла ошибка"),
+                )
+            ubp.delete()
+            book.delete()
+            return render_wait_book_file(
+                update, context, user.language, update.message.from_user.id
+            )
     del context.user_data["new_book"]
     with translation_override(user.language):
         text = _("Книга удачно загружена")
