@@ -92,8 +92,11 @@ class UserBookProgress(models.Model):
         related_name="user_progresses",
         verbose_name="Книга",
     )
-    progress_txt = models.FloatField(
-        "Прогресс", default=0.0, help_text="Для книг типа TXT"
+    progress_txt = models.IntegerField(
+        "Прогресс", default=1, help_text="Для книг типа TXT"
+    )
+    total_pages_txt_book = models.IntegerField(
+        "Общее количество страниц", default=1, help_text="Для книг типа TXT"
     )
     created_at = models.DateTimeField("Создано", auto_now_add=True)
 
@@ -104,6 +107,6 @@ class UserBookProgress(models.Model):
     @property
     def progress(self):
         if self.book.book_type == "txt":
-            return f"{self.progress_txt}%"
+            return "{:.2%}".format(self.progress_txt / self.total_pages_txt_book)
         else:
             return "not supported"
