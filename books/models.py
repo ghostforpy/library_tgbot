@@ -9,8 +9,6 @@ from django.core.cache import caches
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
-# from django.core.paginator import Paginator
-
 from tgbot.utils import send_document, _get_file_id
 
 from .utils import paginate_string
