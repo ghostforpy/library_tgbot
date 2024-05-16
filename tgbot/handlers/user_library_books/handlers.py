@@ -102,6 +102,25 @@ def blank(update: Update, context: CallbackContext):
     pass
 
 
+def render_wait_book_title(update, user, page_num):
+    with translation_override(user.language):
+        text = _("Введите название книги")
+        kwargs = {
+            "text": text,
+            "reply_markup": make_keyboard(
+                {},
+                "inline",
+                1,
+                footer_buttons={f"user_books_library-{page_num}": back_btn()},
+            ),
+        }
+    if update.callback_query:
+        update.callback_query.edit_message_text(**kwargs)
+    else:
+        send_message(user.user_id, **kwargs)
+    return "upload_book"
+
+
 def add_new_book(update: Update, context: CallbackContext):
     context.user_data.pop("new_book", None)
     if update.message:
@@ -114,22 +133,7 @@ def add_new_book(update: Update, context: CallbackContext):
         context.user_data["current_page_num_library"] = page_num
         query.answer()
     user = mymodels.User.get_user_by_username_or_user_id(user_id)
-    with translation_override(user.language):
-        text = _("Введите название книги")
-    kwargs = {
-        "text": text,
-        "reply_markup": make_keyboard(
-            {},
-            "inline",
-            1,
-            footer_buttons={f"user_books_library-{page_num}": back_btn()},
-        ),
-    }
-    if update.callback_query:
-        update.callback_query.edit_message_text(**kwargs)
-    else:
-        send_message(user_id, **kwargs)
-    return "upload_book"
+    return render_wait_book_title(update, user, page_num)
 
 
 def render_wait_book_file(update, context, user_lang, user_id):
