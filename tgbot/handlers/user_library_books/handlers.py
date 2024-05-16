@@ -185,6 +185,18 @@ def manage_book_file_action(update: Update, context: CallbackContext):
         f"{settings.MEDIA_ROOT}/books_files", filename_lst[0], filename_lst[1]
     )
     newFile.download(f"{settings.MEDIA_ROOT}/books_files/{filename}")
+    if "new_book" not in context.user_data:
+        with translation_override(user.language):
+            return render_wait_book_title(
+                update, user, context.user_data["current_page_num_library"]
+            )
+    if "title" not in context.user_data["new_book"]:
+        with translation_override(user.language):
+            send_message(update.message.from_user.id, text=_("Введите название книги"))
+            return render_wait_book_title(
+                update, user, context.user_data["current_page_num_library"]
+            )
+
     book = Book.objects.create(
         title=context.user_data["new_book"]["title"],
         user_upload=user,
