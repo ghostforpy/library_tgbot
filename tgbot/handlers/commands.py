@@ -108,6 +108,23 @@ def choose_lang(update: Update, context: CallbackContext):
     user.last_name = userdata.get("last_name")
     user.language_code = userdata.get("language_code")
     user.save()
+    group = tgGroups.get_group_by_name("Администраторы")
+    if group:
+        domain = settings.DOMAIN
+        if settings.DEBUG:
+            domain = "http://0.0.0.0:8000"
+        bn = {
+            # f"manage_new_user-{user.user_id}": "Посмотреть пользователя",
+            "switch_inline": {
+                "label": "Просмотр в админке",
+                "type": "switch_inline",
+                "url": f"{domain}{user.get_admin_url()}",
+            },
+        }
+        reply_markup = make_keyboard(bn, "inline", 1)
+        text = f"Зарегистрирован новый пользователь @{utils.mystr(user.username)} {user.first_name} {utils.mystr(user.last_name)}\n"
+        # text += f"{domain}{user.get_admin_url()}"
+        send_message(group.chat_id, text, reply_markup=reply_markup)
 
     mess_template = MessageTemplates.objects.get(
         code=MessageTemplatesCode.WELCOME_NEWUSER_MESSAGE
