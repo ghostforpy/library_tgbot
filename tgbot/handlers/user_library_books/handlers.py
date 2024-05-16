@@ -63,7 +63,7 @@ def start_user_books_library(update: Update, context: CallbackContext):
     books_progresses = (
         user.readed_books.order_by("created_at").select_related("book").all()
     )
-    context.user_data["current_page_num"] = page_num
+    context.user_data["current_page_num_library"] = page_num
     BOOKS_PER_PAGE = 10
     p = Paginator(books_progresses, BOOKS_PER_PAGE)
     page = p.page(page_num)
@@ -106,12 +106,12 @@ def add_new_book(update: Update, context: CallbackContext):
     context.user_data.pop("new_book", None)
     if update.message:
         user_id = update.message.from_user.id
-        page_num = context.user_data["current_page_num"]
+        page_num = context.user_data["current_page_num_library"]
     else:
         query = update.callback_query
         user_id = query.from_user.id
         page_num = query.data.split("-")[1]
-        context.user_data["current_page_num"] = page_num
+        context.user_data["current_page_num_library"] = page_num
         query.answer()
     user = mymodels.User.get_user_by_username_or_user_id(user_id)
     with translation_override(user.language):
@@ -142,7 +142,7 @@ def render_wait_book_file(update, context, user_lang, user_id):
             "inline",
             1,
             footer_buttons={
-                f'new_book-{context.user_data["current_page_num"]}': back_btn()
+                f'new_book-{context.user_data["current_page_num_library"]}': back_btn()
             },
         ),
     }
@@ -279,7 +279,7 @@ def change_book_page(update: Update, context: CallbackContext):
             1,
             header_buttons=header_buttons,
             footer_buttons={
-                f'user_books_library-{context.user_data["current_page_num"]}': back_btn()
+                f'user_books_library-{context.user_data["current_page_num_library"]}': back_btn()
             },
         ),
     }
