@@ -257,8 +257,8 @@ def change_book_page(update: Update, context: CallbackContext):
     header_buttons = dict()
     if page.has_previous():
         header_buttons[f"page-{ubp.book_id}-{page.previous_page_number()}"] = "⬅️"
-    if page_num not in [1, 2]:
-        header_buttons[f"page-{ubp.book_id}-1"] = "⏹️"
+    # if page_num not in [1, 2]:
+    #     header_buttons[f"page-{ubp.book_id}-1"] = "⏹️"
     if page.has_next():
         header_buttons[f"page-{ubp.book_id}-{page.next_page_number()}"] = "➡"
     with translation_override(user.language):
