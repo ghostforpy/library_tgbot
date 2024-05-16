@@ -237,6 +237,7 @@ def change_book_page(update: Update, context: CallbackContext):
         user_id = query.from_user.id
         query.answer()
         book_id = int(query.data.split("-")[1])
+        context.user_data["current_book"] = book_id
         page_num = int(query.data.split("-")[2])
     user = mymodels.User.get_user_by_username_or_user_id(user_id)
     ubp = (
@@ -250,6 +251,8 @@ def change_book_page(update: Update, context: CallbackContext):
     ubp.save()
     if page_num > p.num_pages:
         page_num = p.num_pages
+    if page_num == 0:
+        page_num = 1
     page = p.page(page_num)
     header_buttons = dict()
     if page.has_previous():
