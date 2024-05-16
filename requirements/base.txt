@@ -38,4 +38,4 @@ django-telethon==1.1.5
 qrcode==7.4.2
 
 sentry-sdk==1.19.0  # https://github.com/getsentry/sentry-python
-
+lxml==5.2.2
