@@ -1,4 +1,5 @@
 import re
+from lxml import etree
 import telegram
 
 from django.db import models
@@ -87,10 +88,10 @@ class Book(models.Model):
     #     page = p.page(page_num)
     #     return page[0],
 
-    def read_txt_book(self):
+    def read_txt_book(self, from_cache=True):
         key = f"book_{self.id}"
         text = cache.get(key)
-        if text is None:
+        if text is None or not from_cache:
             with self.file.file.open() as file:
                 text = file.read().decode()
             text = re.sub(r"\n{1,}", "\n", text)
@@ -105,73 +106,27 @@ class Book(models.Model):
             cache.set(key, book_pages, 3 * 60)  # 3 min
         return book_pages
 
-    # def read_txt_book(self):
-    #     with self.file.file.open() as file:
-    #         BookInLines = file.readlines()
-    #     return BookInLines
+    def read_fb2_book(self, from_cache=True):
+        key = f"book_{self.id}"
+        text = cache.get(key)
+        if text is None or not from_cache:
+            with self.file.file.open() as file:
+                text = file.read().decode("utf-8")
+            cache.set(key, text, 3 * 60)  # 3 min
+        et = etree.fromstring(text.encode())
+        return et
 
-    # def get_txt_book_frame(self, start_line, end_line):
-    #     bookframe = "".join(self.read_txt_book()[start_line:end_line])
-    #     bookframe = re.sub(r"\s{3,}", "\n~~~~~~\n", bookframe)
-    #     return bookframe
+    def get_chapters_fb2_book(self):
+        book = self.read_fb2_book()
+        return book.findall("*//section", namespaces=book.nsmap)
 
-    # @property
-    # def get_txt_frame_len_next(self, current_progress):
-    #     maxframe_len = len(
-    #         self.get_txt_book_frame(current_progress, current_progress + 15)
-    #     )
-    #     if maxframe_len >= 4000:
-    #         midframe_len = len(
-    #             self.get_txt_book_frame(current_progress, current_progress + 10)
-    #         )
-    #         if midframe_len >= 4000:
-    #             lowframe_len = len(
-    #                 self.get_txt_book_frame(current_progress, current_progress + 5)
-    #             )
-    #             if lowframe_len >= 4000:
-    #                 return 1
-    #             else:
-    #                 return 5
-    #         else:
-    #             return 10
-    #     else:
-    #         return 15
-
-    # @property
-    # def get_txt_frame_len_prev(self, current_progress):
-    #     maxframe_len = len(
-    #         self.get_txt_book_frame(current_progress - 15, current_progress)
-    #     )
-    #     if maxframe_len >= 4000:
-    #         midframe_len = len(
-    #             self.get_txt_book_frame(current_progress - 10, current_progress)
-    #         )
-    #         if midframe_len >= 4000:
-    #             lowframe_len = len(
-    #                 self.get_txt_book_frame(current_progress - 5, current_progress)
-    #             )
-    #             if lowframe_len >= 4000:
-    #                 return 1
-    #             else:
-    #                 return 5
-    #         else:
-    #             return 10
-    #     else:
-    #         return 15
-
-    # @property
-    # def check_txt_if_end(self, current_progress):
-    #     book_len = len(self.get_txt_book_frame(0, -1))
-    #     dif = abs(
-    #         len(
-    #             self.get_txt_book_frame(
-    #                 0, current_progress + self.get_txt_frame_len_next(current_progress)
-    #             )
-    #         )
-    #         - book_len
-    #     )
-    #     relative_dif = (dif / book_len) * 100
-    #     return relative_dif <= 0.018
+    def get_titles_fb2_book(self):
+        text = _("Глава")
+        sections = self.get_chapters_fb2_book()
+        titles = list()
+        for idx, __ in enumerate(sections, start=1):
+            titles.append(f"{text} {idx}")
+        return titles
 
 
 class UserBookProgress(models.Model):
@@ -197,6 +152,12 @@ class UserBookProgress(models.Model):
     total_pages_txt_book = models.IntegerField(
         "Общее количество страниц", default=1, help_text="Для книг типа TXT"
     )
+    progress_section_fb_book = models.IntegerField(
+        "Прогресс глав", default=1, help_text="Для книг типа FB2"
+    )
+    total_sections_fb_book = models.IntegerField(
+        "Общее количество глав", default=1, help_text="Для книг типа FB2"
+    )
     created_at = models.DateTimeField("Создано", auto_now_add=True)
 
     class Meta:
@@ -207,5 +168,13 @@ class UserBookProgress(models.Model):
     def progress(self):
         if self.book.book_type == "txt":
             return "{:.2%}".format(self.progress_txt / self.total_pages_txt_book)
+        elif self.book.book_type == "fb2":
+            section = (
+                _("Глава")
+                + f" {self.progress_section_fb_book}/{self.total_sections_fb_book}"
+            )
+            return "{} - {:.2%}".format(
+                section, self.progress_txt / self.total_pages_txt_book
+            )
         else:
             return "not supported"
