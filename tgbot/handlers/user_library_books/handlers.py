@@ -80,9 +80,11 @@ def start_user_books_library(update: Update, context: CallbackContext):
             for idx, book_p in enumerate(page, start=1):
                 text += f"<b>{(page_num-1)* BOOKS_PER_PAGE +idx}.</b> {book_p.book} - {book_p.progress}\n\n"
                 if book_p.book.book_type == "txt":
-                    btns[f"page-{book_p.book_id}-{book_p.progress_txt}"] = str(
-                        (page_num - 1) * BOOKS_PER_PAGE + idx
-                    )
+                    btn_reply = f"page-{book_p.book_id}-{book_p.progress_txt}"
+                elif book_p.book.book_type == "fb2":
+                    btn_reply = f"page-{book_p.book_id}-{book_p.progress_txt}-{book_p.progress_section_fb_book}"
+                btns[btn_reply] = str((page_num - 1) * BOOKS_PER_PAGE + idx)
+
         else:
             text = _("В вашей библиотеке пока нет книг. Загрузите чтобы начать чтение")
     kwargs = {
@@ -215,7 +217,8 @@ def manage_book_file_action(update: Update, context: CallbackContext):
         else:
             book.read_fb2_book()
             ubp.total_sections_fb_book = len(book.get_chapters_fb2_book())
-            # ubp.total_pages_txt_book = len(book.get_paginated_book_txt())
+            ubp.total_pages_txt_book = len(book.get_paginated_chapter_book_fb2(1))
+            ubp.save()
     except Exception as e:
         with translation_override(user.language):
             send_message(
@@ -246,19 +249,7 @@ def manage_book_file_action(update: Update, context: CallbackContext):
     return "working-user-books"
 
 
-def change_book_page(update: Update, context: CallbackContext):
-    page_num = 1
-    if update.message:
-        user_id = update.message.from_user.id
-        book_id = int(context.user_data["current_book"])
-        page_num = int(update.message.text)
-    else:
-        query = update.callback_query
-        user_id = query.from_user.id
-        query.answer()
-        book_id = int(query.data.split("-")[1])
-        context.user_data["current_book"] = book_id
-        page_num = int(query.data.split("-")[2])
+def render_page_with_kwargs(context, user_id, book_id, page_num=1, chapter_num=1):
     user = mymodels.User.get_user_by_username_or_user_id(user_id)
     ubp = (
         UserBookProgress.objects.filter(user_id=user_id, book_id=book_id)
@@ -268,6 +259,13 @@ def change_book_page(update: Update, context: CallbackContext):
     if ubp.book.book_type == "txt":
         ubp.progress_txt = int(page_num)
         p = Paginator(ubp.book.get_paginated_book_txt(), 1)
+    elif ubp.book.book_type == "fb2":
+        ubp.progress_txt = int(page_num)
+        ubp.progress_section_fb_book = chapter_num
+        if chapter_num > ubp.total_sections_fb_book:
+            chapter_num = ubp.total_sections_fb_book
+        p = Paginator(ubp.book.get_paginated_chapter_book_fb2(chapter_num), 1)
+        ubp.total_pages_txt_book = p.count
     ubp.save()
     if page_num > p.num_pages:
         page_num = p.num_pages
@@ -275,34 +273,100 @@ def change_book_page(update: Update, context: CallbackContext):
         page_num = 1
     page = p.page(page_num)
     header_buttons = dict()
-    if page.has_previous():
-        header_buttons[f"page-{ubp.book_id}-{page.previous_page_number()}"] = "⬅️"
-    # if page_num not in [1, 2]:
-    #     header_buttons[f"page-{ubp.book_id}-1"] = "⏹️"
-    if page.has_next():
-        header_buttons[f"page-{ubp.book_id}-{page.next_page_number()}"] = "➡"
+    if ubp.book.book_type == "txt":
+        if page.has_previous():
+            header_buttons[f"page-{ubp.book_id}-{page.previous_page_number()}"] = "⬅️"
+        # if page_num not in [1, 2]:
+        #     header_buttons[f"page-{ubp.book_id}-1"] = "⏹️"
+        if page.has_next():
+            header_buttons[f"page-{ubp.book_id}-{page.next_page_number()}"] = "➡"
+    elif ubp.book.book_type == "fb2":
+        if page.has_previous():
+            header_buttons[
+                f"page-{ubp.book_id}-{page.previous_page_number()}-{chapter_num}"
+            ] = "⬅️"
+        else:
+            if chapter_num > 1:
+                chapter = ubp.book.get_paginated_chapter_book_fb2(chapter_num - 1)
+                header_buttons[f"page-{ubp.book_id}-{len(chapter)}-{chapter_num-1}"] = (
+                    "⬅️"
+                )
+        if page.has_next():
+            header_buttons[
+                f"page-{ubp.book_id}-{page.next_page_number()}-{chapter_num}"
+            ] = "➡"
+        else:
+            if ubp.total_sections_fb_book > chapter_num:
+                header_buttons[f"page-{ubp.book_id}-1-{chapter_num+1}"] = "➡"
     with translation_override(user.language):
         btns = {}
         if page:
-            text = (
-                _("Страница") + f" {page_num} " + _("из") + f" {p.num_pages}" + "\n\n"
+            text = str()
+            if ubp.book.book_type == "fb2":
+                text += (
+                    " "
+                    + _("Глава")
+                    + f" {chapter_num} "
+                    + _("из")
+                    + f" {ubp.total_sections_fb_book}"
+                )
+                btns = {
+                    f"wait_page-{book_id}-{page_num}-{chapter_num}": _(
+                        "Перейти на страницу"
+                    )
+                }
+                btns[f"wait_chapter-{book_id}-{page_num}-{chapter_num}"] = _(
+                    "Перейти по главам"
+                )
+            text += (
+                " / "
+                + _("Страница")
+                + f" {page_num} "
+                + _("из")
+                + f" {p.num_pages}"
+                + "\n\n"
             )
+            if ubp.book.book_type == "txt":
+                btns = {f"wait_page-{book_id}-{page_num}": _("Перейти на страницу")}
+
             text += page[0]
-            btns = {f"wait_page-{book_id}-{page_num}": _("Перейти")}
         else:
             text = _("Проблемы с отображением книги")
-    kwargs = {
+    return {
         "text": text,
         "reply_markup": make_keyboard(
             btns,
             "inline",
-            1,
+            2,
             header_buttons=header_buttons,
             footer_buttons={
                 f'user_books_library-{context.user_data["current_page_num_library"]}': back_btn()
             },
         ),
     }
+
+
+def change_book_page(update: Update, context: CallbackContext):
+    page_num = 1
+    chapter_num = 1
+    if update.message:
+        user_id = update.message.from_user.id
+        book_id = int(context.user_data["current_book"])
+        page_num = int(update.message.text)
+        current_book_chapter = context.user_data.get("current_book_chapter", None)
+        if current_book_chapter is not None:
+            chapter_num = int(current_book_chapter)
+    else:
+        query = update.callback_query
+        user_id = query.from_user.id
+        query.answer()
+        _s = query.data.split("-")
+        book_id = int(_s[1])
+        context.user_data["current_book"] = book_id
+        page_num = int(_s[2])
+        if len(_s) == 4:
+            chapter_num = int(_s[3])
+    kwargs = render_page_with_kwargs(context, user_id, book_id, page_num, chapter_num)
     if update.callback_query:
         update.callback_query.edit_message_text(**kwargs)
     else:
@@ -310,25 +374,62 @@ def change_book_page(update: Update, context: CallbackContext):
     return "working-book"
 
 
-def handle_wait_page(update: Update, context: CallbackContext):
+def render_wait_change(update: Update, context: CallbackContext, text: str, state: str):
     query = update.callback_query
     user_id = query.from_user.id
     query.answer()
-    current_book_id = int(query.data.split("-")[1])
-    page_num = int(query.data.split("-")[2])
+    _s = query.data.split("-")
+    current_book_id = int(_s[1])
+    page_num = int(_s[2])
     context.user_data["current_book"] = current_book_id
-    user = mymodels.User.get_user_by_username_or_user_id(user_id)
-    with translation_override(user.language):
-        text = _("Введите номер нужной страницы")
+    if len(_s) == 4:
+        context.user_data["current_book_chapter"] = _s[3]
+        current_book_chapter = f"-{_s[3]}"
+    else:
+        current_book_chapter = ""
+        context.user_data.pop("current_book_chapter", None)
     kwargs = {
         "text": text,
         "reply_markup": make_keyboard(
             {},
             "inline",
             1,
-            footer_buttons={f"page-{current_book_id}-{page_num}": back_btn()},
+            footer_buttons={
+                f"page-{current_book_id}-{page_num}{current_book_chapter}": back_btn()
+            },
         ),
     }
+    if update.callback_query:
+        update.callback_query.edit_message_text(**kwargs)
+    else:
+        send_message(user_id, **kwargs)
+    return state
+
+
+def handle_wait_page(update: Update, context: CallbackContext):
+    user = mymodels.User.get_user_by_username_or_user_id(
+        update.callback_query.from_user.id
+    )
+    with translation_override(user.language):
+        text = _("Введите номер нужной страницы")
+    return render_wait_change(update, context, text, "working-book-wait-page")
+
+
+def handle_wait_chapter(update: Update, context: CallbackContext):
+    user = mymodels.User.get_user_by_username_or_user_id(
+        update.callback_query.from_user.id
+    )
+    with translation_override(user.language):
+        text = _("Введите номер нужной главы")
+    return render_wait_change(update, context, text, "working-book-wait-chapter")
+
+
+def change_book_chapter(update: Update, context: CallbackContext):
+    user_id = update.message.from_user.id
+    book_id = int(context.user_data["current_book"])
+    chapter_num = int(update.message.text)
+    page_num = 1
+    kwargs = render_page_with_kwargs(context, user_id, book_id, page_num, chapter_num)
     if update.callback_query:
         update.callback_query.edit_message_text(**kwargs)
     else:
@@ -355,7 +456,7 @@ def setup_dispatcher_conv(dp: Dispatcher):
                     start_user_books_library, pattern="^user_books_library-\d+$"
                 ),
                 CallbackQueryHandler(add_new_book, pattern="^new_book-\d+$"),
-                CallbackQueryHandler(change_book_page, pattern="^page-\d+-\d+$"),
+                CallbackQueryHandler(change_book_page, pattern="^page-\d+-\d+(-\d+)?$"),
                 MessageHandler(Filters.text & FilterPrivateNoCommand, blank),
             ],
             "upload_book": [
@@ -374,10 +475,27 @@ def setup_dispatcher_conv(dp: Dispatcher):
                 CallbackQueryHandler(
                     start_user_books_library, pattern="^user_books_library-\d+$"
                 ),
-                CallbackQueryHandler(handle_wait_page, pattern="^wait_page-\d+-\d+$"),
-                CallbackQueryHandler(change_book_page, pattern="^page-\d+-\d+$"),
+                CallbackQueryHandler(
+                    handle_wait_page, pattern="^wait_page-\d+-\d+(-\d+)?$"
+                ),
+                CallbackQueryHandler(
+                    handle_wait_chapter, pattern="^wait_chapter-\d+-\d+-\d+$"
+                ),
+                CallbackQueryHandler(change_book_page, pattern="^page-\d+-\d+(-\d+)?$"),
+                MessageHandler(Filters.text & FilterPrivateNoCommand, blank),
+            ],
+            "working-book-wait-page": [
+                CallbackQueryHandler(change_book_page, pattern="^page-\d+-\d+(-\d+)?$"),
                 MessageHandler(
                     Filters.regex(r"^\d+$") & FilterPrivateNoCommand, change_book_page
+                ),
+                MessageHandler(Filters.text & FilterPrivateNoCommand, blank),
+            ],
+            "working-book-wait-chapter": [
+                CallbackQueryHandler(change_book_page, pattern="^page-\d+-\d+(-\d+)?$"),
+                MessageHandler(
+                    Filters.regex(r"^\d+$") & FilterPrivateNoCommand,
+                    change_book_chapter,
                 ),
                 MessageHandler(Filters.text & FilterPrivateNoCommand, blank),
             ],

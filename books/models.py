@@ -128,6 +128,21 @@ class Book(models.Model):
             titles.append(f"{text} {idx}")
         return titles
 
+    def get_chapter_book_fb2(self, chapter_num):
+        chapters = self.get_chapters_fb2_book()
+        chapter = chapters[chapter_num - 1]
+        return "\n".join(
+            [i.text for i in chapter.findall("./p", namespaces=chapter.nsmap) if i.text]
+        )
+
+    def get_paginated_chapter_book_fb2(self, chapter_num):
+        key = f"paginated_book_{self.id}_{chapter_num}"
+        chapter_book_pages = cache.get(key)
+        if chapter_book_pages is None:
+            chapter_book_pages = paginate_string(self.get_chapter_book_fb2(chapter_num))
+            cache.set(key, chapter_book_pages, 3 * 60)  # 3 min
+        return chapter_book_pages
+
 
 class UserBookProgress(models.Model):
     user = models.ForeignKey(
