@@ -341,7 +341,7 @@ def render_page_with_kwargs(context, user_id, book_id, page_num=1, chapter_num=1
                     "Перейти по главам"
                 )
             text += (
-                +_("Страница") + f" {page_num} " + _("из") + f" {p.num_pages}" + "\n\n"
+                _("Страница") + f" {page_num} " + _("из") + f" {p.num_pages}" + "\n\n"
             )
             if ubp.book.book_type == "txt":
                 btns = {f"wait_page-{book_id}-{page_num}": _("Перейти на страницу")}
