@@ -75,10 +75,6 @@ COPY --chown=django:django ./compose/production/django/celery/worker/start_msg /
 RUN sed -i 's/\r$//g' /start-celeryworker-msg
 RUN chmod +x /start-celeryworker-msg
 
-COPY --chown=django:django ./compose/production/django/celery/worker/start_tgclient /start-celeryworker-tgclient
-RUN sed -i 's/\r$//g' /start-celeryworker-tgclient
-RUN chmod +x /start-celeryworker-tgclient
-
 COPY --chown=django:django ./compose/production/django/celery/beat/start /start-celerybeat
 RUN sed -i 's/\r$//g' /start-celerybeat
 RUN chmod +x /start-celerybeat
