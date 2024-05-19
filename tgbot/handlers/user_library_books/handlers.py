@@ -1,4 +1,5 @@
 from telegram.update import Update
+import re
 
 # from telegram import ParseMode
 from telegram.ext.callbackcontext import CallbackContext
@@ -177,7 +178,7 @@ def manage_book_file_action(update: Update, context: CallbackContext):
     file_id, filename_orig = _get_file_id(update.message)
     filename_orig = str(user.user_id) + "-" + filename_orig
     filename_lst = filename_orig.split(".")
-    if filename_lst[1].lower() not in ["txt", "fb2"]:
+    if filename_lst[-1].lower() not in ["txt", "fb2"]:
         with translation_override(user.language):
             send_message(
                 update.message.from_user.id, text=_("Формат не поддерживается")
@@ -208,13 +209,17 @@ def manage_book_file_action(update: Update, context: CallbackContext):
         user_upload=user,
         file=f"books_files/{filename}",
         file_id=file_id,
-        book_type=filename_lst[1].lower(),
+        book_type=filename_lst[-1].lower(),
     )
     ubp = UserBookProgress(book=book, user=user)
     try:
         if book.book_type == "txt":
             ubp.total_pages_txt_book = len(book.get_paginated_book_txt())
         else:
+            with book.file.file.open() as file:
+                s = re.search(r"encoding=\"(.*)\"\?", str(file.read()[:100]))
+            book.encoding = s[1]
+            book.save()
             book.read_fb2_book()
             ubp.total_sections_fb_book = len(book.get_chapters_fb2_book())
             ubp.total_pages_txt_book = len(book.get_paginated_chapter_book_fb2(1))
@@ -337,9 +342,10 @@ def render_page_with_kwargs(context, user_id, book_id, page_num=1, chapter_num=1
                         "Перейти на страницу"
                     )
                 }
-                btns[f"wait_chapter-{book_id}-{page_num}-{chapter_num}"] = _(
-                    "Перейти по главам"
-                )
+                if ubp.total_sections_fb_book > 1:
+                    btns[f"wait_chapter-{book_id}-{page_num}-{chapter_num}"] = _(
+                        "Перейти по главам"
+                    )
             text += (
                 _("Страница") + f" {page_num} " + _("из") + f" {p.num_pages}" + "\n\n"
             )
