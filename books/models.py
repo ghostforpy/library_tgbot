@@ -38,6 +38,9 @@ class Book(models.Model):
         choices=[("txt", "txt"), ("fb2", "fb2")],
         max_length=10,
     )
+    encoding = models.CharField(
+        _("Кодировка"), null=True, blank=True, default="", max_length=30
+    )
 
     class Meta:
         verbose_name_plural = "Книги"
@@ -118,9 +121,9 @@ class Book(models.Model):
         text = cache.get(key)
         if text is None or not from_cache:
             with self.file.file.open() as file:
-                text = file.read().decode("utf-8")
+                text = file.read().decode(self.encoding)
             cache.set(key, text, 3 * 60)  # 3 min
-        et = etree.fromstring(text.encode())
+        et = etree.fromstring(text.encode(self.encoding))
         return et
 
     def get_chapters_fb2_book(self):
