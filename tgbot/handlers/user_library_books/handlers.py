@@ -210,7 +210,7 @@ def manage_book_file_action(update: Update, context: CallbackContext):
         file_id=file_id,
         book_type=filename_lst[1].lower(),
     )
-    ubp = UserBookProgress.objects.create(book=book, user=user)
+    ubp = UserBookProgress(book=book, user=user)
     try:
         if book.book_type == "txt":
             ubp.total_pages_txt_book = len(book.get_paginated_book_txt())
@@ -225,7 +225,7 @@ def manage_book_file_action(update: Update, context: CallbackContext):
                 update.message.from_user.id,
                 text=_("При чтении книги произошла ошибка"),
             )
-        ubp.delete()
+        # ubp.delete()
         book.delete()
         return render_wait_book_file(
             update, context, user.language, update.message.from_user.id
