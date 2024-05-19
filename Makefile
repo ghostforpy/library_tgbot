@@ -31,13 +31,13 @@ empty_migration:
 	docker-compose run --rm django python manage.py makemigrations --empty $(APP) && sudo chown ghost:ghost -R ./
 
 migrate_production:
-	sudo docker-compose -f production.yml run --rm django python manage.py migrate
+	sudo docker compose -f production.yml run --rm django python manage.py migrate
 
 production:
-	sudo docker-compose -f production.yml up --build -d --remove-orphans --scale celeryworker=3
+	sudo docker compose -f production.yml up --build -d --remove-orphans --scale celeryworker=3
 
 down_prod:
-	sudo docker-compose -f production.yml down
+	sudo docker compose -f production.yml down
 
 backup_db:
 	./backup_db_production.sh
@@ -55,19 +55,19 @@ startapp_local:
 	docker-compose run --rm django ./manage.py startapp $(APP) && sudo chown ghost:ghost -R ./
 
 manage_production:
-	sudo docker-compose -f production.yml run --rm django ./manage.py $(COMMAND)
+	sudo docker compose -f production.yml run --rm django ./manage.py $(COMMAND)
 
 production_shell:
-	sudo docker-compose -f production.yml run --rm django ./manage.py shell
+	sudo docker compose -f production.yml run --rm django ./manage.py shell
 
 production_build:
-	sudo docker-compose -f production.yml build
+	sudo docker compose -f production.yml build
 
 create_superuser_production:
-	sudo docker-compose -f production.yml run --rm django ./manage.py createsuperuser
+	sudo docker compose -f production.yml run --rm django ./manage.py createsuperuser
 
 production_logs:
-	sudo docker-compose -f production.yml logs -f
+	sudo docker compose -f production.yml logs -f
 
 make_translates:
 	django-admin makemessages --locale=en --ignore=library_tgbot/* -i venv
