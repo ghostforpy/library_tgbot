@@ -218,7 +218,7 @@ def manage_book_file_action(update: Update, context: CallbackContext):
             book.read_fb2_book()
             ubp.total_sections_fb_book = len(book.get_chapters_fb2_book())
             ubp.total_pages_txt_book = len(book.get_paginated_chapter_book_fb2(1))
-            ubp.save()
+        ubp.save()
     except Exception as e:
         with translation_override(user.language):
             send_message(
