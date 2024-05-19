@@ -14,7 +14,7 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["library-tgbot.com"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nanoscript.ru"])
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -42,8 +42,8 @@ CACHES = {
             # https://github.com/jazzband/django-redis#memcached-exceptions-behavior
             "IGNORE_EXCEPTIONS": True,
         },
-        "KEY_PREFIX": "conversations_"
-    }
+        "KEY_PREFIX": "conversations_",
+    },
 }
 
 # SECURITY
@@ -83,7 +83,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
     "DJANGO_DEFAULT_FROM_EMAIL",
-    default="Library TGbot <noreply@library-tgbot.com>",
+    default="Library TGbot <noreply@nanoscript.ru>",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
@@ -174,7 +174,7 @@ sentry_sdk.init(
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
-    {"url": "https://library-tgbot.com", "description": "Library TGbot"}
+    {"url": "https://nanoscript.ru", "description": "Library TGbot"}
 ]
 # Your stuff...
 # ------------------------------------------------------------------------------

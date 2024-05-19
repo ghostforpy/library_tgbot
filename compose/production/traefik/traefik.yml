@@ -22,7 +22,7 @@ certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
     acme:
-      email: "aleksey-storyn@library-tgbot.com"
+      email: "aleksey-storyn@nanoscript.ru"
       storage: /etc/traefik/acme/acme.json
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`library-tgbot.com`) && (PathPrefix(`/api/`) || PathPrefix(`/uz/api/`) || PathPrefix(`/ru/api/`) || PathPrefix(`/auth`) || PathPrefix(`/tgbot`))"
+      rule: "Host(`nanoscript.ru`) && (PathPrefix(`/api/`) || PathPrefix(`/en/api/`) || PathPrefix(`/ru/api/`) || PathPrefix(`/auth`) || PathPrefix(`/tgbot`))"
       entryPoints:
         - web-secure
       middlewares:
@@ -42,7 +42,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: "Host(`library-tgbot.com`)"
+      rule: "Host(`nanoscript.ru`)"
       entryPoints:
         - flower
       service: flower
@@ -51,7 +51,7 @@ http:
         certResolver: letsencrypt
 
     web-media-router:
-      rule: "Host(`library-tgbot.com`)"
+      rule: "Host(`nanoscript.ru`)"
       entryPoints:
         - web-secure
       middlewares:
