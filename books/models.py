@@ -172,7 +172,7 @@ class UserBookProgress(models.Model):
         verbose_name="Книга",
     )
     progress_txt = models.IntegerField(
-        "Прогресс", default=1, help_text="Для книг типа TXT"
+        "Прогресс", default=0, help_text="Для книг типа TXT"
     )
     total_pages_txt_book = models.IntegerField(
         "Общее количество страниц", default=1, help_text="Для книг типа TXT"

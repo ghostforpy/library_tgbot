@@ -266,7 +266,9 @@ def manage_book_file_action(update: Update, context: CallbackContext):
             {},
             "inline",
             1,
-            footer_buttons={f"user_books_library-1": back_btn()},
+            footer_buttons={
+                f"user_books_library-{context.user_data['current_page_num_library']}": back_btn()
+            },
         ),
     }
     if update.callback_query:
