@@ -2,6 +2,7 @@ import re
 from lxml import etree
 import telegram
 
+from django.urls import reverse
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.cache import caches
@@ -47,6 +48,12 @@ class Book(models.Model):
         if self.author:
             r = f"{r} ({self.author})"
         return r
+
+    def get_admin_url(self):
+        return reverse(
+            "admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name),
+            args=(self.id,),
+        )
 
     def clean(self):
         def fill_file_id():

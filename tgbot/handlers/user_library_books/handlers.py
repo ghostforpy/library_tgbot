@@ -35,7 +35,7 @@ from tgbot.handlers.keyboard import make_keyboard
 from tgbot.handlers.filters import FilterPrivateNoCommand
 from tgbot.handlers.commands import command_start
 from tgbot.handlers.main.messages import back
-from tgbot.utils import send_message, _get_file_id, get_uniq_file_name
+from tgbot.utils import send_message, _get_file_id, get_uniq_file_name, mystr
 import tgbot.models as mymodels
 from books.models import Book, UserBookProgress
 from tgbot.handlers.main.handlers import start_contact_us
@@ -230,6 +230,28 @@ def manage_book_file_action(update: Update, context: CallbackContext):
         return render_wait_book_file(
             update, context, user.language, update.message.from_user.id
         )
+
+    group = mymodels.tgGroups.get_group_by_name("Администраторы")
+    if group:
+        domain = settings.DOMAIN
+        if settings.DEBUG:
+            domain = "http://0.0.0.0:8000"
+        bn = {
+            "switch_inline_user": {
+                "label": "Просмотр пользователя",
+                "type": "switch_inline",
+                "url": f"{domain}{user.get_admin_url()}",
+            },
+            "switch_inline_book": {
+                "label": "Просмотр книги",
+                "type": "switch_inline",
+                "url": f"{domain}{book.get_admin_url()}",
+            },
+        }
+        reply_markup = make_keyboard(bn, "inline", 1)
+        text = f"Добавлена новая книга полльзователем @{mystr(user.username)} {user.first_name} {mystr(user.last_name)}\n"
+        send_message(group.chat_id, text, reply_markup=reply_markup)
+
     del context.user_data["new_book"]
     with translation_override(user.language):
         text = _("Книга удачно загружена")
