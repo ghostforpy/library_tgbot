@@ -154,7 +154,7 @@ def run_pooling():
     print(f"Pooling of '{bot_link}' started")
     # global POLLING_IS_RUNNING
     # POLLING_IS_RUNNING = True
-    updater.start_polling(timeout=123, drop_pending_updates=True)
+    updater.start_polling(timeout=123, drop_pending_updates=True, allowed_updates=[])
     updater.idle()
 
 
