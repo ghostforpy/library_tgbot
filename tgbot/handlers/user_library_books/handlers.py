@@ -9,11 +9,11 @@ from telegram.ext import (
     CallbackQueryHandler,
     Filters,
 )
-
+from telegram.parsemode import ParseMode
 from tgbot.handlers.main.messages import back_btn
 
 # from telegram.error import BadRequest
-from telegram import ChatAction
+# from telegram import ChatAction
 
 # from telegram.utils.helpers import escape_markdown
 from django.utils.translation import gettext as _
@@ -94,7 +94,7 @@ def start_user_books_library(update: Update, context: CallbackContext):
         ),
     }
     if update.callback_query:
-        update.callback_query.edit_message_text(**kwargs)
+        update.callback_query.edit_message_text(**kwargs, parse_mode=ParseMode.HTML)
     else:
         send_message(user_id, **kwargs)
     return "working-user-books"
@@ -330,7 +330,7 @@ def render_page_with_kwargs(context, user_id, book_id, page_num=1, chapter_num=1
                     + _("Глава")
                     + f" {chapter_num} "
                     + _("из")
-                    + f" {ubp.total_sections_fb_book}"
+                    + f" {ubp.total_sections_fb_book} / "
                 )
                 btns = {
                     f"wait_page-{book_id}-{page_num}-{chapter_num}": _(
@@ -341,12 +341,7 @@ def render_page_with_kwargs(context, user_id, book_id, page_num=1, chapter_num=1
                     "Перейти по главам"
                 )
             text += (
-                " / "
-                + _("Страница")
-                + f" {page_num} "
-                + _("из")
-                + f" {p.num_pages}"
-                + "\n\n"
+                +_("Страница") + f" {page_num} " + _("из") + f" {p.num_pages}" + "\n\n"
             )
             if ubp.book.book_type == "txt":
                 btns = {f"wait_page-{book_id}-{page_num}": _("Перейти на страницу")}
