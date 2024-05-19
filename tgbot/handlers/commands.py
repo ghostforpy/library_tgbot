@@ -20,7 +20,7 @@ from django.conf import settings
 from config.constants import MessageTemplatesCode
 from sheduler.models import MessageTemplates
 from tgbot.models import User, AbstractTgUser, tgGroups
-from tgbot.utils import extract_user_data_from_update, send_message
+from tgbot.utils import extract_user_data_from_update, send_message, mystr
 from tgbot.handlers.keyboard import make_keyboard
 from tgbot.handlers.main.answers import EMPTY, get_start_menu
 from tgbot.handlers.main.messages import get_start_mess
@@ -122,7 +122,7 @@ def choose_lang(update: Update, context: CallbackContext):
             },
         }
         reply_markup = make_keyboard(bn, "inline", 1)
-        text = f"Зарегистрирован новый пользователь @{utils.mystr(user.username)} {user.first_name} {utils.mystr(user.last_name)}\n"
+        text = f"Зарегистрирован новый пользователь @{mystr(user.username)} {user.first_name} {mystr(user.last_name)}\n"
         # text += f"{domain}{user.get_admin_url()}"
         send_message(group.chat_id, text, reply_markup=reply_markup)
 
