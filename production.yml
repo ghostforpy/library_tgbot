@@ -46,6 +46,7 @@ services:
     image: library_tgbot_production_traefik
     depends_on:
       - django
+      - nginx
     volumes:
       - production_traefik:/etc/traefik/acme
     ports:
