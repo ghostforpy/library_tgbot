@@ -156,7 +156,7 @@ def manage_find_book(update: Update, context: CallbackContext):
     books_set = (
         Book.objects.exclude(id__in=books_progresses)
         .filter(
-            Q(moderator_approved=False)
+            Q(moderator_approved=True)
             & (Q(title__icontains=query) | Q(author__icontains=query))
         )
         .order_by("author", "title")
