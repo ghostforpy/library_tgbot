@@ -40,6 +40,9 @@ from tgbot.handlers.user_library_books.handlers import (
 from tgbot.handlers.messages.handlers import (
     setup_dispatcher_conv as setup_dispatcher_messages,
 )
+from tgbot.handlers.book_catalog.handlers import (
+    setup_dispatcher_conv as setup_dispatcher_book_catalog,
+)
 
 # from tgbot.handlers.manage_members.handlers import setup_dispatcher_conv as setup_dispatcher_manage_memb
 from tgbot.handlers.answers import ERROR_TEXT
@@ -105,7 +108,7 @@ def setup_dispatcher(dp: Dispatcher):
     setup_dispatcher_user_library_books(
         dp
     )  # заполнение обработчиков работы с библиотекой книг пользователя
-
+    setup_dispatcher_book_catalog(dp)  # заполнение обработчиков работы с каталогом книг
     for app in settings.LOCAL_APPS:
         if os.path.isfile(f"{app}/tgbothandlers/setup_dp.py"):
             module = importlib.import_module(f"{app}.tgbothandlers.setup_dp")

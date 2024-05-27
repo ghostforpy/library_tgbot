@@ -17,6 +17,7 @@ TO_ADMINS = {"to_admins": "Сообщение администраторам"}
 
 full_menu = lambda: {
     "user_books_library-1": _("Библиотека"),
+    "book_catalog-1": _("Каталог книг"),
 }
 
 start_menu_short = lambda: {
@@ -27,6 +28,7 @@ start_menu_short = lambda: {
 
 start_menu_admin = lambda: {
     "user_books_library-1": _("Библиотека"),
+    "book_catalog-1": _("Каталог книг"),
 }
 
 

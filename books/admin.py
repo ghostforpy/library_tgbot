@@ -12,6 +12,7 @@ class BookAdmin(admin.ModelAdmin):
         "author",
         "created_at",
         "user_upload",
+        "book_type",
         "moderator_approved",
     )
     list_display_links = ("id",)
