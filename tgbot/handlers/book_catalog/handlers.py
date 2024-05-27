@@ -8,8 +8,11 @@ from telegram.ext import (
     CommandHandler,
     MessageHandler,
     CallbackQueryHandler,
+    InlineQueryHandler,
+    ChosenInlineResultHandler,
     Filters,
 )
+from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.parsemode import ParseMode
 from tgbot.handlers.main.messages import back_btn
 
@@ -18,7 +21,7 @@ from tgbot.handlers.main.messages import back_btn
 
 # from telegram.utils.helpers import escape_markdown
 from django.utils.translation import gettext as _
-
+from django.db.models import Q
 from django.conf import settings
 
 # from sentry_sdk import capture_exception
@@ -40,6 +43,7 @@ from tgbot.utils import send_message, _get_file_id, get_uniq_file_name, mystr
 import tgbot.models as mymodels
 from books.models import Book, UserBookProgress
 from tgbot.handlers.main.handlers import start_contact_us
+from .answers import *
 
 cache = caches["default"]
 
@@ -72,7 +76,7 @@ def start_book_catalog(update: Update, context: CallbackContext):
         .all()
     )
     # books = Book.objects.order_by("author", "title").all()
-    context.user_data["current_page_num_library"] = page_num
+    context.user_data["current_page_num_book_catalog"] = page_num
     BOOKS_PER_PAGE = 10
     p = Paginator(books, BOOKS_PER_PAGE)
     page = p.page(page_num)
@@ -93,10 +97,16 @@ def start_book_catalog(update: Update, context: CallbackContext):
 
         else:
             text = _("На этой странице каталога пока что пусто")
+    footer_buttons = find_book().copy()
+    footer_buttons.update(back())
     kwargs = {
         "text": text,
         "reply_markup": make_keyboard(
-            btns, "inline", 5, header_buttons=header_buttons, footer_buttons=back()
+            btns,
+            "inline",
+            5,
+            header_buttons=header_buttons,
+            footer_buttons=footer_buttons,
         ),
     }
     if update.callback_query:
@@ -111,11 +121,16 @@ def blank(update: Update, context: CallbackContext):
 
 
 def add_book_to_user_library(update: Update, context: CallbackContext):
-    query = update.callback_query
-    user_id = query.from_user.id
-    query.answer()
-    page_num = int(query.data.split("-")[-1])
-    book_id = int(query.data.split("-")[1])
+    if update.callback_query:
+        query = update.callback_query
+        user_id = query.from_user.id
+        query.answer()
+        page_num = int(query.data.split("-")[-1])
+        book_id = int(query.data.split("-")[1])
+    elif update.chosen_inline_result:
+        user_id = update.chosen_inline_result.from_user.id
+        book_id = int(update.chosen_inline_result.result_id)
+        page_num = context.user_data["current_page_num_book_catalog"]
     user = mymodels.User.get_user_by_username_or_user_id(user_id)
     book = Book.objects.filter(id=book_id).first()
     with translation_override(user.language):
@@ -145,6 +160,46 @@ def add_book_to_user_library(update: Update, context: CallbackContext):
     return "working-book-catalog"
 
 
+# Обработчик поиска
+def manage_find_book(update: Update, context: CallbackContext):
+    user_id = update.inline_query.from_user.id
+    user = mymodels.User.get_user_by_username_or_user_id(user_id)
+    query = update.inline_query.query.strip()
+
+    books_progresses = UserBookProgress.objects.filter(user_id=user_id).values_list(
+        "book_id", flat=True
+    )
+    books_set = (
+        Book.objects.exclude(id__in=books_progresses)
+        .filter(
+            Q(moderator_approved=False)
+            & (Q(title__icontains=query) | Q(author__icontains=query))
+        )
+        .order_by("author", "title")
+        .all()
+        .distinct()
+    )
+
+    results = []
+    with translation_override(user.language):
+        msg = choose_book_msg()
+    for _book in books_set:
+        _u = InlineQueryResultArticle(
+            id=f"{_book.id}",
+            title=str(_book),
+            input_message_content=InputTextMessageContent(msg),
+        )
+        # if not settings.DEBUG:
+        #     thumb_url = f"{settings.DOMAIN}/media/no_foto.jpg"
+        #     if user.main_photo != "":
+        #         thumb_url = f"{settings.DOMAIN}{_user.main_photo.url}"
+        #     _u.thumb_url = thumb_url
+        #     _u.thumb_width = 25
+        #     _u.thumb_height = 25
+        results.append(_u)
+    update.inline_query.answer(results, cache_time=5, auto_pagination=True)
+
+
 def setup_dispatcher_conv(dp: Dispatcher):
     # Диалог отправки сообщения
     book_catalog_conv = ConversationHandler(  # здесь строится логика разговора
@@ -158,6 +213,15 @@ def setup_dispatcher_conv(dp: Dispatcher):
         # этапы разговора, каждый со своим списком обработчиков сообщений
         states={
             "working-book-catalog": [
+                InlineQueryHandler(manage_find_book),
+                ChosenInlineResultHandler(add_book_to_user_library),
+                MessageHandler(
+                    Filters.regex(
+                        "|".join([f"^{CHOOSE_BOOK_MSG[i]}$" for i in CHOOSE_BOOK_MSG])
+                    )
+                    & FilterPrivateNoCommand,
+                    blank,
+                ),
                 CallbackQueryHandler(start_book_catalog, pattern="^book_catalog-\d+$"),
                 CallbackQueryHandler(
                     add_book_to_user_library, pattern="^book-\d+-\d+$"
