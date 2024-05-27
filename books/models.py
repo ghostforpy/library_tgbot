@@ -41,6 +41,7 @@ class Book(models.Model):
     encoding = models.CharField(
         _("Кодировка"), null=True, blank=True, default="", max_length=30
     )
+    moderator_approved = models.BooleanField("Одобрено модератором", default=False)
 
     class Meta:
         verbose_name_plural = "Книги"
