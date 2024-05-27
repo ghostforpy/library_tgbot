@@ -1,7 +1,4 @@
 from telegram.update import Update
-import re
-
-# from telegram import ParseMode
 from telegram.ext.callbackcontext import CallbackContext
 from telegram.ext import (
     Dispatcher,
@@ -14,35 +11,23 @@ from telegram.ext import (
 )
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.parsemode import ParseMode
-from tgbot.handlers.main.messages import back_btn
-
-# from telegram.error import BadRequest
-# from telegram import ChatAction
-
-# from telegram.utils.helpers import escape_markdown
 from django.utils.translation import gettext as _
 from django.db.models import Q
-from django.conf import settings
-
-# from sentry_sdk import capture_exception
 from django.core.paginator import Paginator
-
 from django.utils.translation import override as translation_override
-
-# from config.constants import StatusCode
-# from sheduler.models.messages import MessagesToSend
+from django.core.cache import caches
 from tgbot.my_telegram.conversationhandler import (
     MyConversationHandler as ConversationHandler,
 )
-from django.core.cache import caches
 from tgbot.handlers.keyboard import make_keyboard
 from tgbot.handlers.filters import FilterPrivateNoCommand
 from tgbot.handlers.commands import command_start
-from tgbot.handlers.main.messages import back
-from tgbot.utils import send_message, _get_file_id, get_uniq_file_name, mystr
+from tgbot.handlers.main.messages import back, back_btn
+from tgbot.utils import send_message
 import tgbot.models as mymodels
 from books.models import Book, UserBookProgress
 from tgbot.handlers.main.handlers import start_contact_us
+
 from .answers import *
 
 cache = caches["default"]
@@ -75,7 +60,6 @@ def start_book_catalog(update: Update, context: CallbackContext):
         .order_by("author", "title")
         .all()
     )
-    # books = Book.objects.order_by("author", "title").all()
     context.user_data["current_page_num_book_catalog"] = page_num
     BOOKS_PER_PAGE = 10
     p = Paginator(books, BOOKS_PER_PAGE)
