@@ -74,7 +74,7 @@ def start_book_catalog(update: Update, context: CallbackContext):
         if page:
             text = _("Выберите книгу") + "\n\n"
             for idx, book in enumerate(page, start=1):
-                text += f"<b>{(page_num-1)* BOOKS_PER_PAGE +idx}.</b> {book} - {book.book_type}\n\n"
+                text += f"<b>{(page_num-1)* BOOKS_PER_PAGE +idx}.</b> {book}\n\n"
                 btns[f"book-{book.id}-{page_num}"] = str(
                     (page_num - 1) * BOOKS_PER_PAGE + idx
                 )
